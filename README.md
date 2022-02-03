@@ -1,1 +1,1 @@
-# secdocs
+# Fujitsu SecDocs

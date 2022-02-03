@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:tr="http://ts.fujitsu.com/secdocs/v3_1/xaiparchiving" 
+        targetNamespace="http://ts.fujitsu.com/secdocs/v3_1/xaiparchiving"
+        elementFormDefault="qualified" 
+        attributeFormDefault="unqualified"> 
+    
+    <!-- 
+    SecDocs 3.1A00
+    Copyright (c) by Fujitsu Technology Solutions GmbH 2019
+    All Rights Reserved.
+
+    This work is licensed under a
+    Creative Commons Attribution-NoDerivatives 4.0 International License.
+    https://creativecommons.org/licenses/by-nd/4.0/
+    
+    Any changes done by the end user to this file are not subject of any
+    guarantee or maintenance by Fujitsu.
+    -->
+
+
+    <annotation>
+       <documentation>
+           SecDocs extensions for the Result element 
+           of SecDocs XAIP archiving operations
+       </documentation>
+    </annotation>
+
+  
+    <!-- ====================================================== -->
+    <!--    ResultMajor - SecDocs Specific Definitions          -->
+    <!-- ====================================================== -->
+
+    <simpleType name="TResultMajor">
+        <restriction base="string">
+            <enumeration value="SUCCESS" />
+            <enumeration value="FAILURE" />
+        </restriction>
+    </simpleType>
+
+	<!-- ====================================================== -->
+	<!-- ResultMessage - SecDocs Specific Definitions -->
+	<!-- ====================================================== -->
+
+	<simpleType name="TResultMessage">
+		<restriction base="string">
+			<enumeration value="XAIP document submitted successfully" />
+			<enumeration value="XAIP document already submitted" />
+			<enumeration value="XAIP document already submitted and sealed" />
+			<enumeration value="XAIP document retrieved successfully" />
+			<enumeration value="evidence records retrieved successfully" />
+			<enumeration value="no evidence records exist" />
+			<enumeration value="all versions of XAIP document deleted successfully" />
+			<enumeration value="Retention period updated successfully" />
+			<enumeration value="submission failed" />
+			<enumeration value="processing not successful" />
+			<enumeration value="Data objects retrieved successfully" />
+            <enumeration value="Not all objects could be retrieved successfully" />        
+			
+		</restriction>
+	</simpleType>
+
+	<!-- ====================================================== -->
+
+
+
+	<annotation>
+		<documentation>
+			SecDocs extensions for OptionalInputs and OptionalOutputs
+			of SecDocs XAIP archiving operations
+       </documentation>
+    </annotation>
+
+    
+    <!-- =================================================== -->
+    <!--    OptionalInputs - SecDocs Specific Definitions    -->
+    <!-- =================================================== -->
+
+    <!--    No extensions in SecDocs V3.1                    -->
+
+    <!-- =================================================== -->
+    <!--    OptionalOutputs - SecDocs specific Definitions   -->
+    <!-- =================================================== -->
+
+    <element name="status" type="tr:ResponseStatus">
+        <annotation>
+            <documentation>SecDocs status message for web service operation result</documentation>
+        </annotation>
+    </element>
+    
+    <complexType name="ResponseStatus">
+        <sequence>
+            <element name="statusCode"     type="tr:TStatusCode"    minOccurs="1" maxOccurs="1"/>
+        </sequence>
+    </complexType>
+
+	<simpleType name="TStatusCode">
+		<restriction base="string">
+			<enumeration value="Success: XAIP document submitted successfully" />
+			<enumeration value="Success: XAIP document already submitted" />
+			<enumeration value="Success: XAIP document already submitted and sealed" />
+			<enumeration value="Success: XAIP document retrieved successfully" />
+            <enumeration value="Success: evidence records retrieved successfully" />
+            <enumeration value="Success: Data objects retrieved successfully" />
+            <enumeration value="Success: Not all objects could be retrieved successfully" />		
+			<enumeration value="Success: no evidence records exist" />
+			<enumeration
+				value="Success: all versions of XAIP document deleted successfully" />
+			<enumeration value="Success: Retention period updated successfully" />
+			<enumeration value="Failure: submission failed" />
+			<enumeration value="Failure: processing not successful" />
+		</restriction>
+	</simpleType>
+
+    <element name="faultDetails" type="tr:TFaultDetails">
+        <annotation>
+            <documentation>SecDocs fault message for failed web service operations</documentation>
+        </annotation>
+    </element>
+
+    <complexType name="TFaultDetails">
+        <sequence>
+            <element name="nodeName"       type="tr:TNonEmptyString" minOccurs="0" maxOccurs="1"/>
+            <element name="requestNumber"  type="long"          minOccurs="1" maxOccurs="1"/>
+            <element name="operation"      type="string"        minOccurs="0" maxOccurs="1"/>
+            <element name="errorMessage"   type="string"        minOccurs="1" maxOccurs="1"/>
+            <element name="errorCode"      type="integer"       minOccurs="1" maxOccurs="1"/>
+            <element name="errorDetail"    type="string"        minOccurs="0" maxOccurs="1"/>
+            <element name="migSafeFaultDetails" type="tr:TMigSafeFaultDetails" minOccurs="0" maxOccurs="1"/>
+        </sequence>
+    </complexType>
+    
+    <simpleType name="TNonEmptyString">
+        <restriction base="string">
+            <minLength value="1"></minLength>
+            <whiteSpace value="collapse"></whiteSpace>
+        </restriction>
+    </simpleType>
+    
+    <complexType name="TMigSafeFaultDetails">
+        <sequence>
+            <element name="migSafeFaultDetail" type="tr:TMigSafeFaultDetail" minOccurs="1" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    
+    <complexType name="TMigSafeFaultDetail">
+        <sequence>
+            <!-- MigSafe error info string -->
+            <element name="info"                    type="string"       minOccurs="1" maxOccurs="1"/>
+            <!-- MigSafe ECODE -->
+            <element name="ecode"                   type="string"       minOccurs="1" maxOccurs="1"/>
+            <!-- OpenLimit V3 verification protocol -->
+            <element name="xmlVerificationProtocol" type="base64Binary" minOccurs="0" maxOccurs="1"/>
+             <!-- HTML version of the OpenLimit V3 verification protocol -->
+            <element name="htmlVerificationProtocol" type="base64Binary" minOccurs="0" maxOccurs="1"/>
+        </sequence>
+    </complexType>
+
+    <!-- ====================================================== -->   
+
+
+
+    <annotation>
+       <documentation>
+           SecDocs extensions for the XAIP object
+       </documentation>
+    </annotation>
+
+  
+    <!-- ====================================================== -->
+    <!--    credentialType - SecDocs Specific Definitions       -->
+    <!-- ====================================================== -->
+
+    <element name="vrInfo" type="base64Binary">
+        <annotation>
+            <documentation>SecDocs signature verification information provided by OpenLimit SignCubes GmbH</documentation>
+        </annotation>
+    </element>
+    
+    <element name="evidenceRecord" type="tr:TEvidenceRecord">
+        <annotation>
+            <documentation>SecDocs created evidence records</documentation>
+        </annotation>
+    </element>
+    
+    <complexType name="TEvidenceRecord">
+        <simpleContent>
+            <extension base="base64Binary">
+                <attribute name="tsp" use="required" type="string"/>
+            </extension>
+        </simpleContent>
+        
+    </complexType>
+
+    <!-- ====================================================== -->   
+
+
+</schema>

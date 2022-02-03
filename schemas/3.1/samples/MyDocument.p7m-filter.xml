@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<filter schema="myDocument" version="1.0" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="../filter.xsd">
+    <!-- 
+    SecDocs 1.1A00
+    Copyright (c) by Fujitsu Technology Solutions GmbH 2011
+    All Rights Reserved.
+
+    This software is the confidential and proprietary information
+    of Fujitsu Technology Solutions ("Confidential Information").
+    You shall not disclose such Confidential Information and shall
+    use it only in accordance with the terms of the license agreement
+    you entered into with Fujitsu Technology Solutions.
+    -->
+
+<namespace prefix="ns" uri="http://ts.fujitsu.com/secdocs/sdosamples/mydocument"/>
+
+<element mapname="id" xpath="/ns:myDocument/id" default="none"/>
+<element mapname="$RetentionPeriod" maptype="string" xpath="/ns:myDocument/retentionPeriod" default="P10Y"/>
+<element mapname="$SDOPath" default="MyDocumentP7M/*$Year*/*$Month*/*$Day*"/>
+
+<element mapname="name" xpath="/ns:myDocument/file/name" default="none" />
+
+<!-- document node -->
+<node mapname="$DataNode" xpath="/ns:myDocument/file">
+<element mapname="$Content"               xpath="ns:content" maptype="stream"/>
+<element mapname="$ContentCode"           default="BASE64"/>
+<element mapname="$ContentType"           default="P7M" />
+<element mapname="$SignatureEmbedded"     default="AUTO" />
+<element mapname="$SignatureQualityLevel" default="ADVANCED" />
+<element mapname="$SignatureVerification" default="CERTIFICATE" />
+</node>
+
+<!-- meta data -->
+<element mapname="mdAuthor"          xpath="/ns:myDocument/metaData/author"          default="none"/>
+<element mapname="mdDepartment"      xpath="/ns:myDocument/metaData/department"      default="none"/>
+<element mapname="mdCompany"         xpath="/ns:myDocument/metaData/company"         default="none"/>
+<element mapname="mdCopyright"       xpath="/ns:myDocument/metaData/copyright"       default="none"/>
+<element mapname="mdDescription"     xpath="/ns:myDocument/metaData/description"     default="none"/>
+<element mapname="mdKeywords"        xpath="/ns:myDocument/metaData/keywords"        default="none"/>
+<element mapname="mdCreationDate"    xpath="/ns:myDocument/metaData/creationDate"    default="none"/>
+<element mapname="mdLastChangedDate" xpath="/ns:myDocument/metaData/lastChangedDate" default="none"/>
+
+<element mapname="$Index" default="id name mdAuthor mdDepartment mdKeywords mdCreationDate mdLastChangedDate"/>
+
+</filter>

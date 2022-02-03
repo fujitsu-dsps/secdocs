@@ -1,0 +1,35 @@
+*text=auto
+#
+*.adoc text
+*.md   text
+*.pem  text
+*.xjb  text
+*.xml  text
+*.xsd  text
+*.wsdl text
+#
+*.class binary
+*.cer   binary
+*.crt   binary
+*.db    binary
+*.der   binary
+*.doc   binary
+*.docx  binary
+*.ear   binary
+*.gif   binary
+*.gz    binary
+*.jar   binary
+*.jks   binary
+*.jpeg  binary
+*.jpg   binary
+*.p12   binary
+*.pdf   binary
+*.p7m   binary
+*.p7s   binary
+*.rar   binary
+*.tif   binary
+*.tiff  binary
+*.tsr   binary
+*.tar   binary
+*.war   binary
+*.zip   binary

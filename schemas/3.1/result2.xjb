@@ -1,0 +1,8 @@
+<bindings xmlns="http://java.sun.com/xml/ns/jaxb" version="2.1">
+  <!-- map target namespace of schema to a valid Java package name -->
+  <bindings schemaLocation="query/result2.xsd">
+    <schemaBindings>
+      <package name="org.w3._2005.sparql_results_"/>
+    </schemaBindings>
+  </bindings>
+</bindings>

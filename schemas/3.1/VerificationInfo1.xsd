@@ -1,0 +1,26 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"> 
+ 
+ <xsd:element name="VerificationInfo1"> 
+  <xsd:complexType> 
+   <xsd:sequence> 
+    <xsd:element name="Aoid" type="xsd:string"/> 
+       <xsd:element name="VerificationProtocolSum" minOccurs="0"> 
+        <xsd:complexType> 
+         <xsd:complexContent> 
+          <xsd:extension base="xsd:anyType"> 
+		   <xsd:attribute name="version" type="xsd:string"></xsd:attribute>
+           <xsd:attribute name="encoding" type="xsd:string"/> 
+          </xsd:extension> 
+         </xsd:complexContent> 
+        </xsd:complexType> 
+       </xsd:element> 
+       <xsd:element name="RevocationValuesSum" type="xsd:base64Binary" 
+minOccurs="0"/> 
+       <xsd:element name="CertificateValuesSum" type="xsd:base64Binary" 
+minOccurs="0"/> 
+   </xsd:sequence> 
+   <xsd:attribute name="version" type="xsd:string" use="required" />
+  </xsd:complexType> 
+ </xsd:element>  
+ 
+</xsd:schema> 

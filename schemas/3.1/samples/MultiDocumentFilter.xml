@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<filter schema="multiDocument" version="1.0" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="../filter.xsd">
+    <!-- 
+    SecDocs 2.1A00
+    Copyright (c) by Fujitsu Technology Solutions GmbH 2012
+    All Rights Reserved.
+
+    This software is the confidential and proprietary information
+    of Fujitsu Technology Solutions ("Confidential Information").
+    You shall not disclose such Confidential Information and shall
+    use it only in accordance with the terms of the license agreement
+    you entered into with Fujitsu Technology Solutions.
+    -->
+
+<namespace prefix="ns" uri="http://ts.fujitsu.com/secdocs/sdosamples/v1_0/multidocument"/>
+
+<element mapname="author"      maptype="string" xpath="/ns:multiDocument/metaData/author"      default=""/>
+<element mapname="keywords"    maptype="string" xpath="/ns:multiDocument/metaData/keywords"    default=""/>    
+<element mapname="id"          maptype="string" xpath="/ns:multiDocument/metaData/id"          default=""/>    
+<element mapname="description" maptype="string" xpath="/ns:multiDocument/metaData/description" default=""/>    
+<element mapname="department"  maptype="string" xpath="/ns:multiDocument/metaData/department"  default=""/>    
+<element mapname="company"     maptype="string" xpath="/ns:multiDocument/metaData/company"     default=""/>    
+<element mapname="copyright"   maptype="string" xpath="/ns:multiDocument/metaData/copyright"   default=""/>    
+<element mapname="creationDate"    maptype="date" xpath="/ns:multiDocument/metaData/creationDate"/>    
+<element mapname="lastChangedDate" maptype="date" xpath="/ns:multiDocument/metaData/lastChangedDate"/>    
+
+<element mapname="$RetentionPeriod" maptype="string" xpath="/ns:multiDocument/retentionPeriod" default="P0Y"/>
+<element mapname="$ExpirationDate"  maptype="string" xpath="/ns:multiDocument/expirationDate"/>
+<element mapname="$SDOPath" default="multiDocument/*$Year*_*$Dayofyear*"/>
+
+<!-- Knoten fuer das Dokument (PDF mit abgesetzter Signatur) -->
+<node mapname="$DataNode" xpath="/ns:multiDocument/documents/document">
+<element mapname="$Content"               xpath="ns:documentData/content"     maptype="stream"/>
+<element mapname="$ContentCode"           default="BASE64"/>
+<element mapname="$ContentType"           xpath="ns:documentData/contentType" default="OTHERS" />
+<element mapname="$SignatureEmbedded"     default="AUTO" />
+<element mapname="$Signature"             xpath="ns:signatures/signature"     maptype="stream" />
+<element mapname="$SignatureType"         default="PKCS7" />
+<element mapname="$SignatureQualityLevel" default="ADVANCED" />
+<element mapname="$SignatureVerification" default="INFORMATION" />
+</node>
+
+<element mapname="$Subject" default="*author* *keywords* *id*" /> <!-- element used with navigate -->
+<element mapname="$Index" default="author keywords id"/>          <!-- element for query input    -->
+
+</filter>

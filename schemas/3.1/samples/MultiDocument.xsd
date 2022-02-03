@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://ts.fujitsu.com/secdocs/sdosamples/v1_0/multidocument"
+	elementFormDefault="qualified" attributeFormDefault="unqualified"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns="http://ts.fujitsu.com/secdocs/sdosamples/v1_0/multidocument"
+	targetNamespace="http://ts.fujitsu.com/secdocs/sdosamples/v1_0/multidocument"
+	version="1.1">
+	<!-- SecDocs 2.1A00 Copyright (c) by Fujitsu Technology Solutions GmbH 2012 
+		All Rights Reserved. This software is the confidential and proprietary information 
+		of Fujitsu Technology Solutions ("Confidential Information"). You shall not 
+		disclose such Confidential Information and shall use it only in accordance 
+		with the terms of the license agreement you entered into with Fujitsu Technology 
+		Solutions. 
+	-->
+
+
+	<xs:annotation>
+		<xs:documentation>
+			SecDocs sample for a simple multi document SDO container.
+			The MultiDocument SDO container contains at least one document file, and
+			for each document
+			optional detached signatures and also optional meta data, describing the
+			document.
+		</xs:documentation>
+	</xs:annotation>
+
+
+	<xs:element name="multiDocument" type="TMultiDocument">
+		<xs:annotation>
+			<xs:documentation>Root element of the MultiDocument SDO container.
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+
+	<xs:complexType name="TMultiDocument">
+		<xs:annotation>
+			<xs:documentation>Main elements of the MultiDocument SDO container.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<!-- optional SDO specific retention period for the whole set of documents -->
+			<xs:element name="retentionPeriod" type="TNonEmptyString"
+				minOccurs="0" maxOccurs="1" />
+			<!-- optional SDO specific expiration date for the whole set of documents -->
+			<xs:element name="expirationDate" type="TNonEmptyString"
+				minOccurs="0" maxOccurs="1" />
+			<!-- optional document set specific meta data -->
+			<xs:element name="metaData" type="ns:TMetaData" minOccurs="0"
+				maxOccurs="1" />
+			<!-- mandatory set of document(s) -->
+			<xs:element name="documents" type="ns:TDocuments"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="TDocuments">
+		<xs:annotation>
+			<xs:documentation>MultiDocument document file set.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<!-- mandatory: at least one document must be available -->
+			<xs:element name="document" type="ns:TDocument" minOccurs="1"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="TMetaData">
+		<xs:annotation>
+			<xs:documentation>Meta data which describe the document.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<!-- document specific id -->
+			<xs:element name="id" type="TNonEmptyString" minOccurs="0"
+				maxOccurs="1" />
+			<!-- Creator/Author of the document -->
+			<xs:element name="author" type="TNonEmptyString"
+				minOccurs="0" maxOccurs="1" />
+			<!-- Creator's department -->
+			<xs:element name="department" type="TNonEmptyString"
+				minOccurs="0" maxOccurs="1" />
+			<!-- Creator's company -->
+			<xs:element name="company" type="TNonEmptyString"
+				minOccurs="0" maxOccurs="1" />
+			<!-- Document copyright note -->
+			<xs:element name="copyright" type="TNonEmptyString"
+				minOccurs="0" maxOccurs="1" />
+			<!-- Document content description -->
+			<xs:element name="description" type="TNonEmptyString"
+				minOccurs="0" maxOccurs="1" />
+			<!-- Document content keywords -->
+			<xs:element name="keywords" type="TNonEmptyString"
+				minOccurs="0" maxOccurs="1" />
+			<!-- Document creation date -->
+			<xs:element name="creationDate" type="xs:date" minOccurs="0"
+				maxOccurs="1" />
+			<!-- Document date of last change -->
+			<xs:element name="lastChangedDate" type="xs:date"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="TDocument">
+		<xs:annotation>
+			<xs:documentation>Data for a single document.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<!-- Document related meta data -->
+			<xs:element name="metaData" type="ns:TMetaData" minOccurs="0"
+				maxOccurs="1" />
+			<!-- Document file related data -->
+			<xs:element name="documentData" type="ns:TDocumentData"
+				minOccurs="1" maxOccurs="1" />
+			<!-- Detached signature data -->
+			<xs:element name="signatures" type="ns:TSignatures"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="TDocumentData">
+		<xs:annotation>
+			<xs:documentation>Document data.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<!-- Name of document file -->
+			<xs:element name="name" type="ns:TNonEmptyString"
+				minOccurs="0" maxOccurs="1" />
+			<!-- Size of document file in bytes -->
+			<xs:element name="size" type="xs:unsignedLong" minOccurs="0"
+				maxOccurs="1" />
+			<!-- Document type -->
+			<xs:element name="type" type="ns:TDocumentType" default="OTHER"
+				minOccurs="0" maxOccurs="1" />
+			<!-- BASE64 coded binary content of the document file -->
+			<xs:element name="content" type="xs:base64Binary"
+				minOccurs="1" maxOccurs="1" />
+			<!-- Input for $ContentType -->
+			<xs:element name="contentType" type="ns:TNonEmptyString"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="TSignatures">
+		<xs:annotation>
+			<xs:documentation>Detached signature data for a document.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<!-- BASE64 coded binary content of a detached signature file (.p7s file) -->
+			<xs:element name="signature" type="xs:base64Binary"
+				minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:simpleType name="TNonEmptyString">
+		<xs:annotation>
+			<xs:documentation>A string with at least one character.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:simpleType name="TDocumentType">
+		<xs:annotation>
+			<xs:documentation>
+				List of supported well known file formats.
+				Other file formats can be archived by using the value OTHER.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="JPEG" />
+			<xs:enumeration value="OTHER" />
+			<xs:enumeration value="PDF" />
+			<xs:enumeration value="PDF-A" />
+			<xs:enumeration value="PNG" />
+			<xs:enumeration value="TEXT" />
+			<xs:enumeration value="TIFF" />
+			<xs:enumeration value="XML" />
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>
