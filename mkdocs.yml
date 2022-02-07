@@ -1,0 +1,49 @@
+site_name: Fujitsu SecDocs SDO Web Services API
+site_url: https://fujitsu-dsps.github.io/secdocs/
+site_description: Fujitsu SecDocs SDO Web Services API
+site_author: SecDocs Team
+
+repo_name: GitHub
+repo_url: https://github.com/fujitsu-dsps/secdocs/
+edit_uri: "blob/main/docs-src"
+
+theme:
+    name: material
+    palette:
+        scheme: default
+    font: false
+    language: de
+    icon:
+        repo: fontawesome/brands/github
+    features:
+        - navigation.instant
+        - navigation.tracking
+        - navigation.tabs
+        - navigation.tabs.sticky
+
+nav:
+    - Home: index.md
+    - Info:
+        - Über: info/about.md
+        - Lizenz: info/license.md
+
+docs_dir: docs-src
+site_dir: docs
+
+use_directory_urls: true
+strict: true
+
+copyright: Copyright (c) 2022 <a href="https://fujitsu.com/de">Fujitsu Technology Solutions GmbH</a>
+
+markdown_extensions:
+    - pymdownx.highlight:
+        anchor_linenums: true
+    - pymdownx.inlinehilite
+    - pymdownx.snippets
+    - pymdownx.superfences
+
+plugins:
+    - git-revision-date
+    - search:
+        min_search_length: 3
+

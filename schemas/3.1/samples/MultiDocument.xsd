@@ -4,12 +4,13 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns="http://ts.fujitsu.com/secdocs/sdosamples/v1_0/multidocument"
 	targetNamespace="http://ts.fujitsu.com/secdocs/sdosamples/v1_0/multidocument"
 	version="1.1">
-	<!-- SecDocs 2.1A00 Copyright (c) by Fujitsu Technology Solutions GmbH 2012 
-		All Rights Reserved. This software is the confidential and proprietary information 
-		of Fujitsu Technology Solutions ("Confidential Information"). You shall not 
-		disclose such Confidential Information and shall use it only in accordance 
-		with the terms of the license agreement you entered into with Fujitsu Technology 
-		Solutions. 
+	<!-- 
+        SecDocs 2.1A00
+        Copyright (c) by Fujitsu Technology Solutions GmbH 2012 
+
+        This work is licensed under a
+        Creative Commons Attribution-NoDerivatives 4.0 International License.
+        https://creativecommons.org/licenses/by-nd/4.0/
 	-->
 
 

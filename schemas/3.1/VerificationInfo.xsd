@@ -1,13 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<!-- 
-	F.Fischer @ OpenLimit 2010
-		Initial
-	A. Menke @ OpenLimit 2010
-		VerificationProtocol mandatory, Namespace URI changed; 22.10.2010
-	F.Fischer @ OpenLimit 2019
-		MSOS Version String added (optionally)
--->
-
 <xsd:schema xmlns="http://uri.openlimit.com/SecDocs/VerificationInfo" targetNamespace="http://uri.openlimit.com/SecDocs/VerificationInfo" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
 	<xsd:element name="VerificationInfo">

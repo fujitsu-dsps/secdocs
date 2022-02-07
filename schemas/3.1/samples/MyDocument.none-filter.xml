@@ -2,17 +2,14 @@
 <filter schema="myDocument" version="1.0" 
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xsi:noNamespaceSchemaLocation="../filter.xsd">
-    <!-- 
-    SecDocs 1.1A00
-    Copyright (c) by Fujitsu Technology Solutions GmbH 2011
-    All Rights Reserved.
+	<!-- 
+        SecDocs 1.1A00
+        Copyright (c) by Fujitsu Technology Solutions GmbH 2011
 
-    This software is the confidential and proprietary information
-    of Fujitsu Technology Solutions ("Confidential Information").
-    You shall not disclose such Confidential Information and shall
-    use it only in accordance with the terms of the license agreement
-    you entered into with Fujitsu Technology Solutions.
-    -->
+        This work is licensed under a
+        Creative Commons Attribution-NoDerivatives 4.0 International License.
+        https://creativecommons.org/licenses/by-nd/4.0/
+	-->
 
 <namespace prefix="ns" uri="http://ts.fujitsu.com/secdocs/sdosamples/mydocument"/>
 

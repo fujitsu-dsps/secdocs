@@ -1,6 +1,10 @@
 *text=auto
 #
 *.adoc text
+*.css  text
+*.html text
+*.js   text
+*.map  text
 *.md   text
 *.pem  text
 *.xjb  text
