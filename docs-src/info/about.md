@@ -6,8 +6,6 @@ Die Daten auf dieser Site sind folgendermaßen strukturiert:
 - build  
   Skript zur Erzeugung eines Python3 Virtual Environemnts für den
   Aufruf von [MkDocs](https://www.mkdocs.org/)
-- docs  
-  Inhalt dieser Site
 - docs-src  
   Markdown Sourcen dieser Site
 - LICENSE.md  
@@ -27,6 +25,7 @@ ist die GitHub Page
 
 <https://fujitsu-dsps.github.io/secdocs/>
 
-konfiguriert. Für die GitHub Pages werden die Daten aus dem Verzeichnis docs 
-im Branch main verwendet.
+konfiguriert.
+
+Für die GitHub Pages werden die Daten aus dem branch gh-pages verwendet.
 

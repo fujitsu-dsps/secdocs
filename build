@@ -3,40 +3,19 @@
 #######################################################################
 # SecDocs Team (secdocs@ts.fujitsu.com)                               #
 # FJ CE EPS BS2000 CCP 3                                              #
-# Copyright (c) by Fujitsu Technology Solutions 2022                  #
+# Copyright (c) by Fujitsu 2022                                       #
 #                                                                     #
 # This work is licensed under a                                       #
 # Creative Commons Attribution 4.0 International (CC BY 4.0) License. #
 # https://creativecommons.org/licenses/by/4.0/                        #
 #######################################################################
 #
-SCRIPT_NAME=`basename $0`
+declare -r SCRIPT_NAME=`basename $0`
+declare -r VERSION="${SCRIPT_NAME}  2  (22-FEB-2022)"
+#
+###############################################################################
+#
 SCRIPT_DIR=`dirname $0`
-VERSION="${SCRIPT_NAME}  1  (07-FEB-2022)"
-#
-###############################################################################
-#
-export LANG="en_US.UTF-8"
-#
-###############################################################################
-#
-print_usage() {
-    cat - <<EOT
-
-Usage: ${SCRIPT_NAME} [option(s)] [venv]
-       Call mkdocs to build the site related files
-
-Options:
-  -h|--help     : show this help and exit
-  -V|--version  : show version information and exit
-  venv          : create the required virtual environment and exit
-
-  Default : call mkdocs build
-
-EOT
-}
-#
-###############################################################################
 #
 cwd=`pwd`
 if [ "${SCRIPT_DIR}" = "." ]
@@ -50,8 +29,38 @@ fi
 cwd=
 unset cwd
 #
+declare -r SCRIPT_DIR
+#
 ###############################################################################
 #
+export LANG="en_US.UTF-8"
+#
+###############################################################################
+#
+print_usage() {
+    cat - <<EOT
+
+Usage: ${SCRIPT_NAME} [option(s)] [venv|deploy]
+       Call mkdocs to build the site related files
+
+Options:
+  -h|--help     : show this help and exit
+  -V|--version  : show version information and exit
+  -n|--no-check : no check for needed Python3 modules
+
+  Arguments
+  venv          : create the required virtual environment and exit
+  deploy        : create the site and push all data to branch gh-pages
+                  (mkdocs gh-deploy)
+
+  Default: call 'mkdocs build'
+
+EOT
+}
+#
+###############################################################################
+#
+check=1
 while :
 do
     option=$1
@@ -63,6 +72,9 @@ do
         -V | --version)
             echo ${VERSION}
             exit 0
+            ;;
+        -n | --no-check)
+            check=0
             ;;
         --)
             shift 1
@@ -143,50 +155,62 @@ then
     . ${SCRIPT_DIR}/venv/bin/activate
 fi
 #
-python -m pip show mkdocs >/dev/null 2>/dev/null
-if [ $? -ne 0 ]
+if [ ${check} -eq 1 ]
 then
-    echo "${SCRIPT_NAME}: Python module mkdocs not available"
-    exit 1
+#
+    python -m pip show mkdocs >/dev/null 2>/dev/null
+    if [ $? -ne 0 ]
+    then
+        echo "${SCRIPT_NAME}: Python module mkdocs not available"
+        exit 1
+    fi
+#
+    echo "${SCRIPT_NAME}: Python module mkdocs available"
+    echo ""
+    python -m pip show mkdocs 2>/dev/null | head -2
+    echo ""
+#
+    python -m pip show mkdocs-material >/dev/null 2>/dev/null
+    if [ $? -ne 0 ]
+    then
+        echo "${SCRIPT_NAME}: Python module mkdocs-material not available"
+        exit 1
+    fi
+#
+    echo "${SCRIPT_NAME}: Python module mkdocs-material available"
+    echo ""
+    python -m pip show mkdocs-material 2>/dev/null | head -2
+    echo ""
+#
+    python -m pip show mkdocs-git-revision-date-plugin >/dev/null 2>/dev/null
+    if [ $? -ne 0 ]
+    then
+        echo "${SCRIPT_NAME}: Python module mkdocs-git-revision-date-plugin not available"
+        exit 1
+    fi
+#
+    echo "${SCRIPT_NAME}: Python module mkdocs-git-revision-date-plugin available"
+    echo ""
+    python -m pip show mkdocs-git-revision-date-plugin 2>/dev/null | head -2
+    echo ""
+#
 fi
-#
-echo "${SCRIPT_NAME}: Python module mkdocs available"
-echo ""
-python -m pip show mkdocs 2>/dev/null | head -2
-echo ""
-#
-python -m pip show mkdocs-material >/dev/null 2>/dev/null
-if [ $? -ne 0 ]
-then
-    echo "${SCRIPT_NAME}: Python module mkdocs-material not available"
-    exit 1
-fi
-#
-echo "${SCRIPT_NAME}: Python module mkdocs-material available"
-echo ""
-python -m pip show mkdocs-material 2>/dev/null | head -2
-echo ""
-#
-python -m pip show mkdocs-git-revision-date-plugin >/dev/null 2>/dev/null
-if [ $? -ne 0 ]
-then
-    echo "${SCRIPT_NAME}: Python module mkdocs-git-revision-date-plugin not available"
-    exit 1
-fi
-#
-echo "${SCRIPT_NAME}: Python module mkdocs-git-revision-date-plugin available"
-echo ""
-python -m pip show mkdocs-git-revision-date-plugin 2>/dev/null | head -2
-echo ""
 #
 ###############################################################################
 #
-echo "${SCRIPT_NAME}: mkdocs build"
-mkdocs build || exit 1
-echo ""
+if [ "$1" = "deploy" ]
+then
+    echo "${SCRIPT_NAME}: mkdocs gh-deploy"
+    mkdocs gh-deploy || exit 1
+    echo ""
+    exit 0
+fi
 #
-rm -f docs/.nojekyll
-touch docs/.nojekyll
+###############################################################################
+#
+echo "${SCRIPT_NAME}: mkdocs build --clean"
+mkdocs build --clean || exit 1
+echo ""
 #
 echo "${SCRIPT_NAME}: git status"
 git status
