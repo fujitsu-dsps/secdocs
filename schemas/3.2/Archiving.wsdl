@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <definitions name="Archiving" 
+              xmlns="http://schemas.xmlsoap.org/wsdl/" 
+              xmlns:tns="http://ts.fujitsu.com/secdocs/ws/v3_2/archiving" 
+              xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+              xmlns:sdheader="http://ts.fujitsu.com/secdocs/v3_2/secdocs"
+              xmlns:sdarchiving="http://ts.fujitsu.com/secdocs/v3_2/archiving"
+              xmlns:sparql="http://www.w3.org/2005/09/sparql-protocol-types/#" 
+              xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+              targetNamespace="http://ts.fujitsu.com/secdocs/ws/v3_2/archiving">
+    <!-- 
+    SecDocs 3.2A00
+    Copyright (c) by Fujitsu 2022
+
+    This work is licensed under a
+    Creative Commons Attribution-NoDerivatives 4.0 International License.
+    https://creativecommons.org/licenses/by-nd/4.0/
+    
+    Any changes done by the end user to this file are not subject of any
+    guarantee or maintenance by Fujitsu.
+    -->
+    
+    <documentation>
+      SecDocs Archiving Web Service WSDL file.
+      This file is a template for a mandant (tenant) specific archiving WSDL file.
+    </documentation>
+
+	<types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://ts.fujitsu.com/secdocs/v3_2/secdocs" schemaLocation="secdocs.xsd"/>
+		</schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://ts.fujitsu.com/secdocs/v3_2/archiving" schemaLocation="ArchivingData.xsd"/>
+            <import namespace="http://ts.fujitsu.com/secdocs/v3_2/archiving" schemaLocation="ArchivingDataResponses.xsd"/>
+        </schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://www.w3.org/2005/09/sparql-protocol-types/#" schemaLocation="query/sparql-protocol-types.xsd"/>
+        </schema>
+	</types>
+
+    <message name="SecDocsSoapHeader">
+        <documentation>SecDocs related SOAP header data</documentation>
+        <part name="secDocsSoapHeader" element="sdheader:soapHeaderData"/>
+    </message>
+	<message name="FaultMessage">
+        <documentation>SecDocs fault message data</documentation>
+		<part name="secDocsSoapFault" element="sdheader:faultDetails"/>
+	</message>
+	<message name="GetAOID_RequestMessage">
+        <documentation>SecDocs operation getAOID related request message</documentation>
+		<part name="getAoid" element="sdarchiving:getAoidRequest"/>
+	</message>
+	<message name="GetAOID_ResponseMessage">
+        <documentation>SecDocs operation getAOID related response message</documentation>
+		<part name="getAoid" element="sdarchiving:getAoidResponse"/>
+	</message>
+    <message name="DeleteSDO_RequestMessage">
+        <documentation>SecDocs operation deleteSDO related request message</documentation>
+        <part name="deleteSdoRequest" element="sdarchiving:deleteSdoRequest"/>
+    </message>
+    <message name="DeleteSDO_ResponseMessage">
+        <documentation>SecDocs operation deleteSDO related response message</documentation>
+        <part name="deleteSdoResponse" element="sdarchiving:deleteSdoResponse"/>
+    </message>
+    <message name="ForceDeleteSDO_RequestMessage">
+        <documentation>SecDocs operation forceDeleteSDO related request message</documentation>
+        <part name="forceDeleteSdoRequest" element="sdarchiving:forceDeleteSdoRequest"/>
+    </message>
+    <message name="ForceDeleteSDO_ResponseMessage">
+        <documentation>SecDocs operation forceDeleteSDO related response message</documentation>
+        <part name="forceDeleteSdoResponse" element="sdarchiving:forceDeleteSdoResponse"/>
+    </message>
+    <message name="MetaDataSDO_RequestMessage">
+        <documentation>SecDocs operation metaDataSDO related request message</documentation>
+        <part name="metaDataSDORequest" element="sdarchiving:metaDataSDORequest"/>
+    </message>
+    <message name="MetaDataSDO_ResponseMessage">
+        <documentation>SecDocs operation metaDataSDO related response message</documentation>
+        <part name="metaDataSDOResponse" element="sdarchiving:metaDataSDOResponse"/>
+    </message>
+    <message name="StatusSDO_RequestMessage">
+        <documentation>SecDocs operation statusSDO related request message</documentation>
+        <part name="statusSDORequest" element="sdarchiving:statusSDORequest"/>
+    </message>
+    <message name="StatusSDO_ResponseMessage">
+        <documentation>SecDocs operation statusSDO related response message</documentation>
+        <part name="statusSDOResponse" element="sdarchiving:statusSDOResponse"/>
+    </message>
+    <message name="RetrieveMetaData_RequestMessage">
+        <documentation>SecDocs operation retrieveMetaData related request message</documentation>
+        <part name="retrieveMetaDataRequest" element="sdarchiving:retrieveMetaDataRequest"/>
+    </message>
+    <message name="RetrieveMetaData_ResponseMessage">
+        <documentation>SecDocs operation retrieveMetaData related response message</documentation>
+        <part name="retrieveMetaDataResponse" element="sdarchiving:retrieveMetaDataResponse"/>
+    </message>
+     <message name="SubmitSDO_ResponseMessage">
+        <documentation>SecDocs operation submitSDO related response message</documentation>
+        <part name="submitSdoResponse" element="sdarchiving:submitSdoResponse"/>
+    </message>
+    <message name="ReplaceSDO_ResponseMessage">
+        <documentation>SecDocs operation replaceSDO related response message</documentation>
+        <part name="replaceSdoResponse" element="sdarchiving:replaceSdoResponse"/>
+    </message>
+    <message name="RetrieveSDO_RequestMessage">
+        <documentation>SecDocs operation retrieveSDO related request message</documentation>
+        <part name="retrieveSdoRequest" element="sdarchiving:retrieveSdoRequest"/>
+    </message>
+    <message name="RequestForEvidence_RequestMessage">
+        <documentation>SecDocs operation requestForEvidence related request message</documentation>
+        <part name="requestForEvidenceRequest" element="sdarchiving:requestForEvidenceRequest"/>
+    </message>
+    <message name="RequestForEvidence_ResponseMessage">
+        <documentation>SecDocs operation requestForEvidence related response message</documentation>
+        <part name="requestForEvidenceResponse" element="sdarchiving:requestForEvidenceResponse"/>
+    </message>
+    <message name="Navigate_RequestMessage">
+        <documentation>SecDocs operation navigate related request message</documentation>
+        <part name="navigateRequest" element="sdarchiving:navigateRequest"/>
+    </message>
+    <message name="Navigate_ResponseMessage">
+        <documentation>SecDocs operation navigate related response message</documentation>
+        <part name="navigateResponse" element="sdarchiving:navigateResponse"/>
+    </message>
+    <message name="GetSchemaDataSDO_RequestMessage">
+        <documentation>SecDocs operation getSchemaDataSDO related request message</documentation>
+        <part name="getSchemaDataSDORequest" element="sdarchiving:getSchemaDataSDORequest"/>
+    </message>
+    <message name="GetSchemaDataSDO_ResponseMessage">
+        <documentation>SecDocs operation getSchemaDataSDO related response message</documentation>
+        <part name="getSchemaDataSDOResponse" element="sdarchiving:getSchemaDataSDOResponse"/>
+    </message>
+    <message name="SetExpirationDateTimeSDO_RequestMessage">
+        <documentation>SecDocs operation setExpirationDateTimeSDO related request message</documentation>
+        <part name="setExpirationDateTimeSDORequest" element="sdarchiving:setExpirationDateTimeSDORequest"/>
+    </message>
+    <message name="SetExpirationDateTimeSDO_ResponseMessage">
+        <documentation>SecDocs operation setExpirationDateTimeSDO related response message</documentation>
+        <part name="setExpirationDateTimeSDOResponse" element="sdarchiving:setExpirationDateTimeSDOResponse"/>
+    </message>
+    <message name="ForceDeferredSDO_RequestMessage">
+        <documentation>SecDocs operation forceDeferredSDO related request message</documentation>
+        <part name="forceDeferredSDORequest" element="sdarchiving:forceDeferredSDORequest"/>
+    </message>
+    <message name="ForceDeferredSDO_ResponseMessage">
+        <documentation>SecDocs operation forceDeferredSDO related response message</documentation>
+        <part name="forceDeferredSDOResponse" element="sdarchiving:forceDeferredSDOResponse"/>
+    </message>
+    <message name="MoveSDO_RequestMessage">
+        <documentation>SecDocs operation moveSDO related request message</documentation>
+        <part name="moveSDORequest" element="sdarchiving:moveSDORequest"/>
+    </message>
+    <message name="MoveSDO_ResponseMessage">
+        <documentation>SecDocs operation moveSDO related response message</documentation>
+        <part name="moveSDOResponse" element="sdarchiving:moveSDOResponse"/>
+    </message>
+    <message name="GetAccountingData_RequestMessage">
+        <documentation>SecDocs operation fetAccountData related request message</documentation>
+        <part name="getAccountingDataRequest" element="sdarchiving:getAccountingDataRequest"/>
+    </message>
+    <message name="GetAccountingData_ResponseMessage">
+        <documentation>SecDocs operation getAccountData related response message</documentation>
+        <part name="getAccountingDataResponse" element="sdarchiving:getAccountingDataResponse"/>
+    </message>
+    <message name="SparqlQuery_RequestMessage">
+        <documentation>SecDocs operation sparqlQuery related request message</documentation>
+        <part name="query-request" element="sparql:query-request"/>
+    </message>
+    <message name="SparqlQuery_ResponseMessage">
+        <documentation>SecDocs operation sparqlQuery related response message</documentation>
+        <part name="query-result" element="sparql:query-result"/>
+    </message>
+    <message name="SimpleQuery_RequestMessage">
+        <documentation>SecDocs operation simpleQuery related request message</documentation>
+        <part name="simpleQueryRequest" element="sdarchiving:simpleQueryRequest"/>
+    </message>
+    <message name="SimpleQuery_ResponseMessage">
+        <documentation>SecDocs operation simpleQuery related response message</documentation>
+        <part name="simpleQueryResponse" element="sdarchiving:simpleQueryResponse"/>
+    </message>
+    <message name="ListSdoVersions_RequestMessage">
+        <documentation>SecDocs operation listSdoVersions related request message</documentation>
+        <part name="listSdoVersionsRequest" element="sdarchiving:listSdoVersionsRequest"/>
+    </message>
+    <message name="ListSdoVersions_ResponseMessage">
+        <documentation>SecDocs operation listSdoVersions related response message</documentation>
+        <part name="listSdoVersionsResponse" element="sdarchiving:listSdoVersionsResponse"/>
+    </message>
+    <message name="GetVersion_RequestMessage">
+        <documentation>SecDocs operation getAOID related request message</documentation>
+        <part name="getVersionRequest" element="sdarchiving:getVersionRequest"/>
+    </message>
+    <message name="GetVersion_ResponseMessage">
+        <documentation>SecDocs operation getVersion related response message</documentation>
+        <part name="getVersionResponse" element="sdarchiving:getVersionResponse"/>
+    </message>
+    <message name="GetAOIDWithRef_RequestMessage">
+        <documentation>SecDocs operation getAOIDWithRef related request message</documentation>
+        <part name="getAoidWithRefRequest" element="sdarchiving:getAoidWithRefRequest"/>
+    </message>
+    <message name="GetAOIDWithRef_ResponseMessage">
+        <documentation>SecDocs operation getAOIDwithRef related response message</documentation>
+        <part name="getAoidWithRefResponse" element="sdarchiving:getAoidWithRefResponse"/>
+    </message>
+    <message name="RegisterRefs4LXAIP_RequestMessage">
+        <documentation>SecDocs operation registerRefs4LXAIP related request message</documentation>
+        <part name="registerRefs4LXAIPRequest" element="sdarchiving:registerRefs4LXAIPRequest"/>
+    </message>
+    <message name="RegisterRefs4LXAIP_ResponseMessage">
+        <documentation>SecDocs operation registerRefs4LXAIP related response message</documentation>
+        <part name="registerRefs4LXAIPResponse" element="sdarchiving:registerRefs4LXAIPResponse"/>
+    </message>
+
+	<portType name="Archiving_PortType">
+		<operation name="getAOID">
+			<input message="tns:GetAOID_RequestMessage"/>
+			<output message="tns:GetAOID_ResponseMessage"/>
+			<fault name="FaultMessage" message="tns:FaultMessage"/>
+		</operation>
+        <operation name="deleteSDO">
+            <input message="tns:DeleteSDO_RequestMessage"/>
+            <output message="tns:DeleteSDO_ResponseMessage"/>
+            <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+        <operation name="forceDeleteSDO">
+            <input message="tns:ForceDeleteSDO_RequestMessage"/>
+            <output message="tns:ForceDeleteSDO_ResponseMessage"/>
+            <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+        <operation name="metaDataSDO">
+            <input message="tns:MetaDataSDO_RequestMessage"/>
+            <output message="tns:MetaDataSDO_ResponseMessage"/>
+            <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+        <operation name="statusSDO">
+            <input message="tns:StatusSDO_RequestMessage"/>
+            <output message="tns:StatusSDO_ResponseMessage"/>
+            <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+        <operation name="retrieveMetaData">
+            <input message="tns:RetrieveMetaData_RequestMessage"/>
+            <output message="tns:RetrieveMetaData_ResponseMessage"/>
+            <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+        <operation name="requestForEvidence">
+            <input message="tns:RequestForEvidence_RequestMessage"/>
+            <output message="tns:RequestForEvidence_ResponseMessage"/>
+            <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+        <operation name="navigate">
+            <input message="tns:Navigate_RequestMessage"/>
+            <output message="tns:Navigate_ResponseMessage"/>
+            <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+        <operation name="getSchemaDataSDO">
+            <input message="tns:GetSchemaDataSDO_RequestMessage"/>
+            <output message="tns:GetSchemaDataSDO_ResponseMessage"/>
+            <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+        <operation name="setExpirationDateTimeSDO">
+            <input message="tns:SetExpirationDateTimeSDO_RequestMessage"/>
+            <output message="tns:SetExpirationDateTimeSDO_ResponseMessage"/>
+            <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+        <operation name="forceDeferredSDO">
+            <input message="tns:ForceDeferredSDO_RequestMessage"/>
+            <output message="tns:ForceDeferredSDO_ResponseMessage"/>
+            <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+        <operation name="moveSDO">
+            <input message="tns:MoveSDO_RequestMessage"/>
+            <output message="tns:MoveSDO_ResponseMessage"/>
+            <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+        <operation name="getAccountingData">
+            <input message="tns:GetAccountingData_RequestMessage"/>
+            <output message="tns:GetAccountingData_ResponseMessage"/>
+            <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+        <operation name="sparqlQuery">
+            <input message="tns:SparqlQuery_RequestMessage"/>
+            <output message="tns:SparqlQuery_ResponseMessage"/>
+            <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+        <operation name="simpleQuery">
+            <input message="tns:SimpleQuery_RequestMessage"/>
+            <output message="tns:SimpleQuery_ResponseMessage"/>
+            <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+         <operation name="listSDOVersions">
+            <input message="tns:ListSdoVersions_RequestMessage"/>
+            <output message="tns:ListSdoVersions_ResponseMessage"/>
+            <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+        <operation name="getVersion">
+            <input message="tns:GetVersion_RequestMessage"/>
+            <output message="tns:GetVersion_ResponseMessage"/>
+            <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+        <operation name="getAOIDWithRef">
+            <input message="tns:GetAOIDWithRef_RequestMessage"/>
+            <output message="tns:GetAOIDWithRef_ResponseMessage"/>
+            <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+        <operation name="registerRefs4LXAIP">
+            <input message="tns:RegisterRefs4LXAIP_RequestMessage"/>
+            <output message="tns:RegisterRefs4LXAIP_ResponseMessage"/>
+            <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+	</portType>
+
+	<binding name="Archiving_Binding" type="tns:Archiving_PortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="getAOID">
+			<soap:operation soapAction="" style="document"/>
+			<input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="FaultMessage">
+				<soap:fault name="FaultMessage" use="literal"/>
+			</fault>
+		</operation>
+        <operation name="deleteSDO">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="forceDeleteSDO">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="metaDataSDO">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="statusSDO">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="retrieveMetaData">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="requestForEvidence">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="navigate">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="getSchemaDataSDO">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="setExpirationDateTimeSDO">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="forceDeferredSDO">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="moveSDO">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="getAccountingData">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="sparqlQuery">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="simpleQuery">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="listSDOVersions">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="getVersion">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="getAOIDWithRef">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="registerRefs4LXAIP">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+	</binding>
+
+	<service name="ArchivingService">
+	    <documentation>SecDocs archiving web service</documentation>
+		<port name="Archiving_Port" binding="tns:Archiving_Binding">
+			<soap:address location="http://localhost:8080/archiver/ws/3.2/archiving"/>
+		</port>
+	</service>
+</definitions>

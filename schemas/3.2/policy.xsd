@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns="http://esig.dsengine.ts.fujitsu.com/validation/policy"
+           targetNamespace="http://esig.dsengine.ts.fujitsu.com/validation/policy"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+           
+	<xs:annotation>
+		<xs:documentation>This schema is used to build a validation policy for DSS.</xs:documentation>
+		<xs:documentation>A validation policy is a combination checks for the signature, timestamp, certificate and/or revocation data. These checks or rules can be configured with different levels of criticality and allows to continue/interupt the validation process.</xs:documentation>
+		<xs:documentation>The ETSI EN 319 102-1 takes a validation policy as parameter.</xs:documentation>
+	</xs:annotation>
+         
+	<xs:element name="ConstraintsParameters" type="ConstraintsParameters" />
+           
+	<xs:complexType name="ConstraintsParameters">
+		<xs:annotation>
+			<xs:documentation>Root element for the DSS validation policy : that allows to customize the validation process : add/remove a check and set its criticality.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Description" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The validation policy description</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ContainerConstraints" type="ContainerConstraints" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ASiC specific constraints</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SignatureConstraints" type="SignatureConstraints" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Constraints on the signature (signed/unsigned properties, coverage,...)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CounterSignatureConstraints" type="SignatureConstraints" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Constraints related to the counter-signatures</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Timestamp" type="TimestampConstraints" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Constraints on the timestamps</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Revocation" type="RevocationConstraints" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Constraints related to the revocation data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Cryptographic" type="CryptographicConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Global constraints about cryptograhic usage (encryption, digest, key length, algorithm deprecation,...). If no specific constraints is added in Signature/Timestamp/... elements, this configuration will be used.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Model" type="ModelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks / Defines the validation model shell, chain or hybrid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="eIDAS" type="eIDAS" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Constraints related to the European context (trusted list validity,...)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute type="xs:string" name="Name">
+			<xs:annotation>
+				<xs:documentation>The policy name</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="ContainerConstraints">
+		<xs:annotation>
+			<xs:documentation>ASiC specific constraints</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AcceptableContainerTypes" type="MultiValuesConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the returned container type is in the acceptable values list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ZipCommentPresent" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the zip comment is present</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AcceptableZipComment" type="MultiValuesConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the returned zip comment is in the acceptable values list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MimeTypeFilePresent" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the mimetype file is present</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AcceptableMimeTypeFileContent" type="MultiValuesConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the mimetype content is in the acceptable values list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ManifestFilePresent" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if one or more manifest file is present (ASiC-E) or none is present (ASiC-S)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SignedFilesPresent" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if one or more signed files is present outside META-INF folder (ASiC-E) or only one file is present at root level (ASiC-S)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AllFilesSigned" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks in all present files in the container are covered by the signature</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SignatureConstraints">
+		<xs:annotation>
+			<xs:documentation>Group of constraints for the signature(s) (signed/unsigned properties, coverage,...)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="StructuralValidation" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks the structural content (mainly XAdES against its XML Schema)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AcceptablePolicies" type="MultiValuesConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if used signature policy is in the acceptable values list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PolicyAvailable" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks the availability of the signature policy (PDF resource,...)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PolicyHashMatch" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks the hash value for the given signature policy</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AcceptableFormats" type="MultiValuesConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if signature format (XAdES-BASELINE-B,...) is in the acceptable values list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FullScope" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the signature cover the complete document</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BasicSignatureConstraints" type="BasicSignatureConstraints" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Group of common checks</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SignedAttributes" type="SignedAttributesConstraints" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Group of checks on the signed attributes/properties</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UnsignedAttributes" type="UnsignedAttributesConstraints" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Group of checks on the unsigned attributes/properties</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="SignedAttributesConstraints">
+		<xs:annotation>
+			<xs:documentation>Group of constraints on the signed attributes/properties</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SigningCertificatePresent" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks the presence of the signingCertificate (V1/V2) attribute</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UnicitySigningCertificate" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks the unicity of the signingCertificate (V1/V2) attribute</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CertDigestPresent" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks the presence of the signing certificate digest</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CertDigestMatch" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the signing certificate digest match with the found signer</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IssuerSerialMatch" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the serial number of the issuer certificate match</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SigningTime" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks the presence of the signing-time attribute</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ContentType" type="ValueConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the content-type attribute (CAdES) has the expected value</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ContentHints" type="ValueConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the content-hints attribute (CAdES) has the expected value</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ContentIdentifier" type="ValueConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the content-identifier attribute (CAdES) has the expected value</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MessageDigestOrSignedPropertiesPresent" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks the presence of message-digest attribute (CAdES) or SignedProperties (XAdES)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CommitmentTypeIndication" type="MultiValuesConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if CommitmentTypeIndication is in the acceptable values list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SignerLocation" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks the presence of the production/localization attribute</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ClaimedRoles" type="MultiValuesConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if claimed role is in the acceptable values list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CertifiedRoles" type="MultiValuesConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if certified role is in the acceptable values list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ContentTimeStamp" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks the presence of a content-timestamp attribute</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="UnsignedAttributesConstraints">
+		<xs:annotation>
+			<xs:documentation>Group of constraints on the unsigned attributes/properties</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CounterSignature" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks the presence of a counter-signature attribute</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="TimestampConstraints">
+		<xs:annotation>
+			<xs:documentation>Group of constraints on the timestamps</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="TimestampDelay" type="TimeConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks the delay between the best-signature-time and the claimed signing time</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RevocationTimeAgainstBestSignatureTime" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the revocation date is after the best-signature-time</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BestSignatureTimeBeforeExpirationDateOfSigningCertificate" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the best-signature-time is before the expiration of the signing certificate</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Coherence" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks the timestamps ordering (archival timestamp is not before a content-timestamp,...)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BasicSignatureConstraints" type="BasicSignatureConstraints" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Group of common checks on this token signature</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SignedAttributes" type="SignedAttributesConstraints" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Group of checks on the signed attributes/properties</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="RevocationConstraints">
+		<xs:annotation>
+			<xs:documentation>Group of constraints on the revocation data</xs:documentation>
+		</xs:annotation>
+  		<xs:complexContent>
+			<xs:extension base="LevelConstraint">
+				<xs:sequence>
+					<xs:element name="RevocationFreshness" type="TimeConstraint" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Checks the freshness of the revocation data, the policy can expect a recent revocation data</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="UnknownStatus" type="LevelConstraint" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Checks the returned status is not unknown</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OCSPCertHashPresent" type="LevelConstraint" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Checks if an OCSP response has certHash attribute</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OCSPCertHashMatch" type="LevelConstraint" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Checks if a value of certHash attribute matches the signing certificate</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="BasicSignatureConstraints" type="BasicSignatureConstraints" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Group of common checks on this token signature</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="BasicSignatureConstraints">
+		<xs:annotation>
+			<xs:documentation>Group of common checks for any kind of signed token (signature, timestamp or revocation data)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ReferenceDataExistence" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks the existence of the signed data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReferenceDataIntact" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the embedded digest match the signed data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ManifestEntryObjectExistence" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the manifest entry was provided for the validation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SignatureIntact" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the signature is based on the found public key</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SignatureValid" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the signature is intact and the reference is found and intact</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SignatureDuplicated" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if a validating file contains signature duplicates</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProspectiveCertificateChain" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate chain is trusted</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SignerInformationStore" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if CMS Signed Data Signer Information Store has only one signer information</xs:documentation> <!-- PAdES only (!) -->
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TrustedServiceTypeIdentifier" type="MultiValuesConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the related trust service type identifier is in the acceptable values list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TrustedServiceStatus" type="MultiValuesConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the related trust service status is in the acceptable values list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SigningCertificate" type="CertificateConstraints" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Group of checks to operate on the signing certificate</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CACertificate" type="CertificateConstraints" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Group of checks to operate on the CA certificate(s)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Cryptographic" type="CryptographicConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Group of cryptographic checks to operate on the current signed token</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CertificateConstraints">
+		<xs:annotation>
+			<xs:documentation>Group of checks related to a certificate</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Recognition" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the signing certificate is known</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Signature" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate is well signed</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NotExpired" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate is not expired</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AuthorityInfoAccessPresent" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks the presence of the AIA (issuer) in the certificate</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RevocationInfoAccessPresent" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks the presence of the CRL distribution points or AIA (OCSP) in the certificate</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RevocationDataAvailable" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if a revocation data is found in the signature or externally for this certificate</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RevocationDataNextUpdatePresent" type="LevelConstraint" minOccurs="0" >
+				<xs:annotation>
+					<xs:documentation>Checks the presence of the NextUpdate value in the revocation data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RevocationDataFreshness" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks the revocation data freshness is concluant</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KeyUsage" type="MultiValuesConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate's key usages are in the acceptable values list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExtendedKeyUsage" type="MultiValuesConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate's extended key usages are in the acceptable values list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Surname" type="MultiValuesConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate's surname is in the acceptable values list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GivenName" type="MultiValuesConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate's given name is in the acceptable values list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CommonName" type="MultiValuesConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate's common name is in the acceptable values list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Pseudonym" type="MultiValuesConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate's pseudonym is in the acceptable values list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrganizationUnit" type="MultiValuesConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate's organization unit is in the acceptable values list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrganizationName" type="MultiValuesConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate's organization name is in the acceptable values list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Country" type="MultiValuesConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate's country is in the acceptable values list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SerialNumberPresent" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks the presence of the serial number for the current certificate</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NotRevoked" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate is not revoked (with a revocation date and status different than certificateHold)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NotOnHold" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate is not with a status certificateHold</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SelfSigned" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate is a self-signed certificate</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NotSelfSigned" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate is NOT a self-signed certificate</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PolicyIds" type="MultiValuesConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate policy id is in the acceptable values list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="QCStatementIds" type="MultiValuesConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate qc statement is in the acceptable values list</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Qualification" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate is declared as qualified (no TL overrule)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SupportedByQSCD" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate is declared as QSCD (no TL overrule)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IssuedToNaturalPerson" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate is issued for a natural person (no TL overrule)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IssuedToLegalPerson" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate is issued for a legal person (no TL overrule)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UsePseudonym" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the certificate use a pseudonym</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Cryptographic" type="CryptographicConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Group of cryptographic checks to operate on the certificate</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="CryptographicConstraint">
+		<xs:annotation>
+			<xs:documentation>Group of constraints related to cryptographic usage</xs:documentation>
+		</xs:annotation>
+  		<xs:complexContent>
+			<xs:extension base="LevelConstraint">
+				<xs:sequence>
+					<xs:element name="AcceptableEncryptionAlgo" type="ListAlgo" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Checks if the encryption algorithm is in the allowed values</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="MiniPublicKeySize" type="ListAlgo" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Checks if the key length for the encryption is acceptable</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AcceptableDigestAlgo" type="ListAlgo" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Checks if the digest algorithm is in the allowed values</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AlgoExpirationDate" type="AlgoExpirationDate" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Checks if the used algorithm is still acceptable based on an expiration date</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<!-- eIDAS REGL 910/EU/2014 -->
+	<xs:complexType name="eIDAS">
+		<xs:annotation>
+			<xs:documentation>Group of checks related to Trusted Lists</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="TLFreshness" type="TimeConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks the Trusted List freshness to ensure the validation uses an up-to-date version</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TLNotExpired" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the Trusted List is not expired (NextUpdate)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TLWellSigned" type="LevelConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the signature of the Trusted List is valid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TLVersion" type="ValueConstraint" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Checks if the version (TSLVersionIdentifier) of the Trusted List is equals to the given value</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="ListAlgo">
+		<xs:annotation>
+			<xs:documentation>List of algorithms</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Algo" type="Algo" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="AlgoExpirationDate">
+		<xs:annotation>
+			<xs:documentation>List of algorithms with their expiration date</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Algo" type="Algo" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="Format" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Specifies the date format to be followed (default : yyyy-MM-dd)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	
+	<xs:complexType name="Algo">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute type="xs:int" name="Size" use="optional">
+					<xs:annotation>
+						<xs:documentation>The minimal key length</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute type="xs:string" name="Date" use="optional">
+					<xs:annotation>
+						<xs:documentation>The expiration date</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	
+	<xs:complexType name="LevelConstraint">
+		<xs:annotation>
+			<xs:documentation>Boolean check : follows the specified level behavior in case of failure</xs:documentation>
+		</xs:annotation>
+		<xs:attribute type="level" name="Level">
+			<xs:annotation>
+				<xs:documentation>The level of criticality</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="MultiValuesConstraint">
+		<xs:annotation>
+			<xs:documentation>Multi-values check : follows the specified level behavior if the checked element is not present in the list. '*' can be used and means any value.</xs:documentation>
+		</xs:annotation>
+  		<xs:complexContent>
+			<xs:extension base="LevelConstraint">
+				<xs:sequence>
+					<xs:element type="xs:string" name="Id" maxOccurs="unbounded" minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ValueConstraint" mixed="true">
+		<xs:annotation>
+			<xs:documentation>Value check : follows the specified level behavior if the checked element is not equals to the specified value</xs:documentation>
+		</xs:annotation>
+  		<xs:complexContent>
+			<xs:extension base="LevelConstraint">
+				<xs:attribute type="xs:string" name="value" />
+			</xs:extension>
+  		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="TimeConstraint">
+		<xs:annotation>
+			<xs:documentation>Time based check : follows the specified level behavior if the checked element is over the time limit</xs:documentation>
+		</xs:annotation>
+  		<xs:complexContent>
+			<xs:extension base="LevelConstraint">
+				<xs:attribute type="TimeUnit" name="Unit"/>
+				<xs:attribute type="xs:int" name="Value" />
+			</xs:extension>
+  		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:simpleType name="level">
+		<xs:annotation>
+			<xs:documentation>Defined levels for a validation step</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FAIL">
+				<xs:annotation>
+					<xs:documentation>Stops the validation process and reports as error</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="WARN">
+				<xs:annotation>
+					<xs:documentation>Continues the validation process and adds a warning message</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="INFORM">
+				<xs:annotation>
+					<xs:documentation>Continues the validation process and adds an informative message</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IGNORE">
+				<xs:annotation>
+					<xs:documentation>Continues the validation process and skips the current check (equals to not present check)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="TimeUnit">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DAYS"/>
+			<xs:enumeration value="HOURS"/>
+			<xs:enumeration value="MINUTES"/>
+			<xs:enumeration value="SECONDS"/>
+			<xs:enumeration value="MILLISECONDS"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name="ModelConstraint">
+		<xs:annotation>
+			<xs:documentation>Boolean check : follows the specified validation model</xs:documentation>
+		</xs:annotation>
+		<xs:attribute type="Model" name="Value">
+			<xs:annotation>
+				<xs:documentation>The validation model</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	
+	<xs:simpleType name="Model">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SHELL"/>
+			<xs:enumeration value="CHAIN"/>
+			<xs:enumeration value="HYBRID"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

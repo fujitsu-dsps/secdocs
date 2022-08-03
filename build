@@ -2,7 +2,7 @@
 #
 #######################################################################
 # SecDocs Team (secdocs@ts.fujitsu.com)                               #
-# FJ CE EPS BS2000 CCP 3                                              #
+# FJ CE EPS CCP 3                                                     #
 # Copyright (c) by Fujitsu 2022                                       #
 #                                                                     #
 # This work is licensed under a                                       #
@@ -11,7 +11,7 @@
 #######################################################################
 #
 declare -r SCRIPT_NAME=`basename $0`
-declare -r VERSION="${SCRIPT_NAME}  2  (22-FEB-2022)"
+declare -r VERSION="${SCRIPT_NAME}  2  (03-AUG-2022)"
 #
 ###############################################################################
 #
@@ -54,6 +54,11 @@ Options:
                   (mkdocs gh-deploy)
 
   Default: call 'mkdocs build'
+
+  Before calling "build deploy":
+  git add .
+  git commit -m "commit message"
+  git push
 
 EOT
 }

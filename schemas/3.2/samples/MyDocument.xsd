@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://ts.fujitsu.com/secdocs/sdosamples/mydocument" 
+            elementFormDefault="qualified"  
+            attributeFormDefault="unqualified"  
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+            xmlns:ns="http://ts.fujitsu.com/secdocs/sdosamples/mydocument" 
+            targetNamespace="http://ts.fujitsu.com/secdocs/sdosamples/mydocument" 
+            version="1.1">
+    <!-- 
+    SecDocs 1.1A00
+    Copyright (c) by Fujitsu Technology Solutions GmbH 2011
+
+    This work is licensed under a
+    Creative Commons Attribution-NoDerivatives 4.0 International License.
+    https://creativecommons.org/licenses/by-nd/4.0/
+    
+    Any changes done by the end user to this file are not subject of any
+    guarantee or maintenance by Fujitsu.
+    -->
+
+  <xsd:annotation>
+    <xsd:documentation>
+      SecDocs sample for a simple SDO container.
+      The MyDocument SDO container contains a document file, an optional detached signature
+      and optional meta data, describing the document.
+    </xsd:documentation>
+  </xsd:annotation>
+
+  
+  <xsd:element name="myDocument" type="TMyDocument">
+    <xsd:annotation>
+      <xsd:documentation>Root element of the MyDocument SDO container.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  
+  
+  <xsd:complexType name="TMyDocument">
+    <xsd:annotation>
+      <xsd:documentation>Main elements of the MyDocument SDO container.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="id"              type="xsd:string"   minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="retentionPeriod" type="xsd:string"   minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="metaData"        type="ns:TMetaData" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="file"            type="ns:TFile"     minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+
+  <xsd:complexType name="TMetaData">
+    <xsd:annotation>
+      <xsd:documentation>Optional meta data which describe the document.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <!-- Creator/Author of the document -->
+      <xsd:element name="author"          type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <!-- Creator's department -->
+      <xsd:element name="department"      type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <!-- Creator's company -->
+      <xsd:element name="company"         type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <!-- Document copyright note -->
+      <xsd:element name="copyright"       type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <!-- Document content description -->
+      <xsd:element name="description"     type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <!-- Document content keywords-->
+      <xsd:element name="keywords"        type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <!-- Document creation date -->
+      <xsd:element name="creationDate"    type="xsd:date"   minOccurs="0" maxOccurs="1"/>
+      <!-- Document date of last change -->
+      <xsd:element name="lastChangedDate" type="xsd:date"   minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+
+  <xsd:complexType name="TFile">
+    <xsd:annotation>
+      <xsd:documentation>MyDocument file data.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <!-- Name of the document file -->
+      <xsd:element name="name"      type="ns:TName"         minOccurs="1" maxOccurs="1"/>
+      <!-- Document file type -->
+      <xsd:element name="type"      type="ns:TFileType"     minOccurs="1" maxOccurs="1"/>
+      <!-- BASE64 coded binary content of the document file -->
+      <xsd:element name="content"   type="xsd:base64Binary" minOccurs="1" maxOccurs="1"/>
+      <!-- BASE64 coded binary content of the detached signature file (.p7s file) -->
+      <xsd:element name="signature" type="xsd:base64Binary" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  
+  <xsd:simpleType name="TName">
+    <xsd:annotation>
+      <xsd:documentation>
+        Name of the document file.
+        The document file's name can't be an empty string.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="1"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  
+  <xsd:simpleType name="TFileType">
+    <xsd:annotation>
+      <xsd:documentation>
+        List of all supported file formats.
+        Other file formats can be archived by using the value other.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="JPEG"/>
+      <xsd:enumeration value="PDF"/>
+      <xsd:enumeration value="PDF-A"/>
+      <xsd:enumeration value="PNG"/>
+      <xsd:enumeration value="TIFF"/>
+      <xsd:enumeration value="TXT"/>
+      <xsd:enumeration value="XML"/>
+      <xsd:enumeration value="OTHER"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+</xsd:schema>

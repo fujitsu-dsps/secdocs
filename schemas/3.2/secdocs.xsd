@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://ts.fujitsu.com/secdocs/v3_2/secdocs" 
+           elementFormDefault="qualified" 
+           attributeFormDefault="unqualified" 
+           xmlns:tns="http://ts.fujitsu.com/secdocs/v3_2/secdocs" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           targetNamespace="http://ts.fujitsu.com/secdocs/v3_2/secdocs">
+
+    <!-- 
+    SecDocs 3.2A00
+    Copyright (c) by Fujitsu Technology Solutions GmbH 2022
+
+    This work is licensed under a
+    Creative Commons Attribution-NoDerivatives 4.0 International License.
+    https://creativecommons.org/licenses/by-nd/4.0/
+    
+    Any changes done by the end user to this file are not subject of any
+    guarantee or maintenance by Fujitsu.
+    -->
+
+    <!-- SecDocs specific SOAP header data -->
+    <xs:annotation>
+        <xs:documentation>root elements for the various message types</xs:documentation>
+    </xs:annotation>
+
+    <xs:element name="soapHeaderData" type="TSoapHeader">
+        <xs:annotation>
+            <xs:documentation>SecDocs specific SOAP header data</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="faultDetails" type="TFaultDetails">
+        <xs:annotation>
+            <xs:documentation>SecDocs fault message for failed WS operations</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+ 	<xs:annotation>
+        <xs:documentation>complex data types for the SecDocs specific SOAP header and the SecDocs fault messages</xs:documentation>
+    </xs:annotation>
+    <xs:complexType name="TSoapHeader">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP request/response header data</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="operation" type="tns:TOperation" minOccurs="1" maxOccurs="1"/>
+            <!-- The security element is not needed when a client certificate is used -->
+            <xs:element name="security"  type="tns:TSecurity"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="auditID"   type="xs:string"      minOccurs="0" maxOccurs="1"/>
+            <xs:element name="coid"      type="tns:TCoid"      minOccurs="0" maxOccurs="1"/>
+            <xs:element name="aoid"      type="tns:TUuid"      minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SDOType"   type="xs:string"      minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TFaultDetails">
+        <xs:sequence>
+            <xs:element name="nodeName"       type="tns:TNonEmptyString" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="requestNumber"  type="xs:long"          minOccurs="1" maxOccurs="1"/>
+            <xs:element name="operation"      type="xs:string"        minOccurs="0" maxOccurs="1"/>
+            <xs:element name="errorMessage"   type="xs:string"        minOccurs="1" maxOccurs="1"/>
+            <xs:element name="errorCode"      type="xs:integer"       minOccurs="1" maxOccurs="1"/>
+            <xs:element name="errorDetail"    type="xs:string"        minOccurs="0" maxOccurs="1"/>
+            <xs:element name="additionalData" type="xs:base64Binary"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="migSafeFaultDetails" type="tns:TMigSafeFaultDetails" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TSecurity">
+        <xs:sequence>
+            <xs:element name="principal" type="TPrincipal"/>
+            <xs:choice>
+                <xs:element name="password" type="xs:string"/>
+                <xs:element name="token" type="xs:base64Binary"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TPrincipal">
+        <xs:sequence>
+            <xs:element name="role" minOccurs="1" maxOccurs="1" type="xs:string"/>
+            <xs:element name="mandant" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="orgID" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="TUuid">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="TOperation">
+        <xs:restriction base="xs:string">
+            <!-- Operations  called  by Archivar -->
+            <xs:enumeration value="getAOID" />
+            <xs:enumeration value="submitSDO" />
+            <xs:enumeration value="retrieveSDO" />
+            <xs:enumeration value="deleteSDO" />
+            <xs:enumeration value="forceDeleteSDO" />
+            <xs:enumeration value="metaDataSDO" />
+            <xs:enumeration value="statusSDO" />
+            <xs:enumeration value="retrieveMetaData"/>
+            <xs:enumeration value="requestForEvidence"/>
+            <xs:enumeration value="navigate"/>
+            <xs:enumeration value="getSchemaDataSDO"/>
+            <xs:enumeration value="moveSDO"/>
+            <xs:enumeration value="setExpirationDateTimeSDO"/>
+            <xs:enumeration value="forceDeferredSDO"/>
+            <xs:enumeration value="sparqlQuery" />
+            <xs:enumeration value="simpleQuery" />
+            <xs:enumeration value="retrieveXAIP" />
+            <xs:enumeration value="listSDOVersions" />
+            <xs:enumeration value="replaceSDO" />
+            <xs:enumeration value="getAOIDWithRef" />
+            <xs:enumeration value="updateFromHistory" />
+            
+            <!--  Archivar operation for TR-ESOR XAIP -->
+            <xs:enumeration value="registerRefs4LXAIP" />
+
+            <!-- Operations  called  by ArchiveAdmin -->
+            <xs:enumeration value="createMandant" />
+            <xs:enumeration value="createMandantXAIP" />
+            <xs:enumeration value="createSignatureAlgorithm" />
+            <xs:enumeration value="createTSP" />
+            <xs:enumeration value="getMandants" />
+            <xs:enumeration value="getStatisticalData" />
+
+            <!-- Operations  called  by MandantAdmin -->
+            <xs:enumeration value="createOrganisation" />
+            <xs:enumeration value="createSDOType" />
+            <xs:enumeration value="getSDOTypes" />
+            <xs:enumeration value="getOrganisations" />
+            <xs:enumeration value="renewHashAlgorithm" />
+            <xs:enumeration value="renewTSPSignature" />
+            <xs:enumeration value="getMandantProperties" />
+            <xs:enumeration value="updateOrganisation"></xs:enumeration>
+            <xs:enumeration value="modifySDOType"></xs:enumeration>
+           <xs:enumeration value="modifyXAIP"></xs:enumeration>
+            
+            <!-- New operations -->
+            <xs:enumeration value="updateRole"></xs:enumeration>
+            <xs:enumeration value="createRole"></xs:enumeration>
+            <xs:enumeration value="deleteRoles"></xs:enumeration>
+            <xs:enumeration value="getRoles"></xs:enumeration>
+            <xs:enumeration value="deleteSDOType"></xs:enumeration>
+            <xs:enumeration value="getAccountingData"></xs:enumeration> 
+            <xs:enumeration value="updatePrivilege"></xs:enumeration>
+            <xs:enumeration value="createPrivilege"></xs:enumeration>
+            <xs:enumeration value="deletePrivileges"></xs:enumeration>
+            <xs:enumeration value="getPrivileges"></xs:enumeration>
+            <xs:enumeration value="updateTSP"></xs:enumeration>
+            <xs:enumeration value="clearAOIDs"></xs:enumeration>
+            <xs:enumeration value="convertTestMandant"></xs:enumeration>
+            <xs:enumeration value="deleteTestMandant"></xs:enumeration>
+            <xs:enumeration value="performAction"></xs:enumeration>
+            <xs:enumeration value="getArchiveInfo"></xs:enumeration>
+            <xs:enumeration value="getArchivingOperations"></xs:enumeration>
+            <xs:enumeration value="getAuditLogFileNames"></xs:enumeration>
+            <xs:enumeration value="getAuditLogFile"></xs:enumeration>
+            
+            <!-- Operations for ArchiveAdmin/MandantAdmin -->
+
+            <xs:enumeration value="getSignatureAlgorithms" />
+            <xs:enumeration value="getHashAlgorithms" />
+            <xs:enumeration value="getTSPs" />
+            <xs:enumeration value="setCredentials" />
+            <xs:enumeration value="updateMandant"></xs:enumeration>
+            
+            <!-- Operations for all -->
+
+            <xs:enumeration value="getVersion"></xs:enumeration>
+
+			<!-- Functions for future use -->
+          
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="TMigSafeFaultDetails">
+        <xs:sequence>
+            <xs:element name="migSafeFaultDetail" type="tns:TMigSafeFaultDetail" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="TMigSafeFaultDetail">
+        <xs:sequence>
+            <!-- MigSafe error info string -->
+            <xs:element name="info"                    type="xs:string"        minOccurs="1" maxOccurs="1"/>
+            <!-- MigSafe ECODE -->
+            <xs:element name="ecode"                   type="xs:string"        minOccurs="1" maxOccurs="1"/>
+            <!-- DSEngine verification protocol -->
+            <xs:element name="xmlVerificationProtocol" type="xs:base64Binary"  minOccurs="0" maxOccurs="1"/>
+            <!-- HTML version of the DSEngine verification protocol -->
+            <xs:element name="htmlVerificationProtocol" type="xs:base64Binary" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+		
+	<xs:complexType name="TGetAccountingDataResponseType">
+		<xs:sequence>
+			<xs:element name="NumberOfSealedDocuments" type="xs:long"></xs:element>
+			<xs:element name="NumberOfSealingActions" type="xs:long"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+    <xs:simpleType name="TNonEmptyString">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"></xs:minLength>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="TCoid">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"></xs:minLength>
+            <xs:maxLength value="256"></xs:maxLength>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

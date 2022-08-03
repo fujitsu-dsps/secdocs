@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ts.fujitsu.com/secdocs/v3_2/adminData" 
+xmlns:tns="http://ts.fujitsu.com/secdocs/v3_2/adminData" 
+elementFormDefault="qualified">
+    <!-- 
+    SecDocs 3.2A00
+    Copyright (c) by Fujitsu Technology Solutions GmbH 2022
+
+    This work is licensed under a
+    Creative Commons Attribution-NoDerivatives 4.0 International License.
+    https://creativecommons.org/licenses/by-nd/4.0/
+    
+    Any changes done by the end user to this file are not subject of any
+    guarantee or maintenance by Fujitsu.
+    -->
+
+ <complexType name="PropertyListType">
+        <sequence>
+            <element name="Property" type="tns:PropertyType" maxOccurs="unbounded" minOccurs="0"></element>
+        </sequence>
+    </complexType>
+
+    <complexType name="PropertyType">
+        <sequence>
+            <element name="Name" type="string"></element>
+            <element name="Value" type="string"></element>
+        </sequence>
+    </complexType>
+    
+</schema>

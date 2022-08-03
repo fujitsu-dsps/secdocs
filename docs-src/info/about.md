@@ -4,7 +4,7 @@
 Die Daten auf dieser Site sind folgendermaßen strukturiert:
 
 - build  
-  Skript zur Erzeugung eines Python3 Virtual Environemnts für den
+  Skript zur Erzeugung eines Python3 Virtual Environments für den
   Aufruf von [MkDocs](https://www.mkdocs.org/)
 - docs-src  
   Markdown Sourcen dieser Site
@@ -28,4 +28,11 @@ ist die GitHub Page
 konfiguriert.
 
 Für die GitHub Pages werden die Daten aus dem branch gh-pages verwendet.
+
+## Verwendete Software zur Site Erstellung
+Es werden die folgenden Python Module verwendet
+
+  - [MkDocs](https://www.mkdocs.org/)
+  - [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
+  - [mkdocs-git-revision-date-plugin](https://github.com/zhaoterryy/mkdocs-git-revision-date-plugin/)
 

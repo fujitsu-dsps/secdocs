@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://ts.fujitsu.com/secdocs/v3_2/archiving" 
+           elementFormDefault="qualified" 
+           attributeFormDefault="unqualified" 
+           xmlns:tns="http://ts.fujitsu.com/secdocs/v3_2/archiving" 
+           xmlns:sd="http://ts.fujitsu.com/secdocs/v3_2/secdocs"
+           xmlns:xaip="http://www.bsi.bund.de/tr-esor/xaip/1.2"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+           xmlns:asic="http://uri.etsi.org/02918/v1.2.1#"
+           targetNamespace="http://ts.fujitsu.com/secdocs/v3_2/archiving">
+
+    <!-- 
+    SecDocs 3.2A00
+    Copyright (c) by Fujitsu Technology Solutions GmbH 2022
+
+    This work is licensed under a
+    Creative Commons Attribution-NoDerivatives 4.0 International License.
+    https://creativecommons.org/licenses/by-nd/4.0/
+    
+    Any changes done by the end user to this file are not subject of any
+    guarantee or maintenance by Fujitsu.
+    -->
+
+    <xs:annotation>
+        <xs:documentation>SecDocs archiving request and response messages</xs:documentation>
+    </xs:annotation>
+    
+    <xs:import namespace="http://ts.fujitsu.com/secdocs/v3_2/secdocs" schemaLocation="secdocs.xsd"/>
+
+    <xs:element name="getAoidRequest" type="TGetAoidRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation getAOID</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="metaDataSDORequest" type="TMetaDataSDORequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation metaDataSDO</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="statusSDORequest" type="TStatusSDORequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation statusSDO</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    
+    <xs:element name="retrieveMetaDataRequest" type="TRetrieveMetaDataRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation retrieveMetaData</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="replaceSdoRequest" type="TReplaceSdoRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation replaceSDO</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    
+    <xs:element name="retrieveSdoRequest" type="TRetrieveSdoRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation retrieveSDO</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    
+    <xs:element name="retrieveXaipRequest" type="TRetrieveXaipRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation retrieveXAIP</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="requestForEvidenceRequest" type="TRequestForEvidenceRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation requestForEvidence</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="deleteSdoRequest" type="TDeleteSdoRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation deleteSDO</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="forceDeleteSdoRequest" type="TForceDeleteSdoRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation forceDeleteSDO</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="navigateRequest" type="TNavigateRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation navigate</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="getSchemaDataSDORequest" type="TGetSchemaDataSDORequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation getSchemaDataSDO</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="setExpirationDateTimeSDORequest" type="TSetExpirationDateTimeSDORequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation setExpirationDateTimeSDO</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="forceDeferredSDORequest" type="TForceDeferredSDORequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation setExpirationDateTimeSDO</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="moveSDORequest" type="TMoveSDORequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation moveSDO</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="getAccountingDataRequest" type="TGetAccountingDataRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation getAccountingData</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="simpleQueryRequest" type="TSimpleQueryRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation simpleQuery</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="listSdoVersionsRequest" type="TListSdoVersionsRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation listSdoVersions</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="getVersionRequest" type="TGetVersionRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation getVersion</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="getAoidWithRefRequest" type="TGetAoidWithRefRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation getAOIDWithRef</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="updateFromHistoryRequest" type="TUpdateFromHistoryRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation updateFromHistory</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="registerRefs4LXAIPRequest" type="TRegisterRefs4LXAIPRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation registerRefs4LXAIP</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+<!-- ================================================================= -->
+
+    <xs:annotation>
+        <xs:documentation>complex data types for the SOAP body request and response messages</xs:documentation>
+    </xs:annotation>
+
+
+    <xs:complexType name="TGetAoidRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation getAOID</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
+    <xs:complexType name="TMetaDataSDORequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation metaDataSDO</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
+    <xs:complexType name="TStatusSDORequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation statusSDO</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    
+    <xs:complexType name="TRetrieveMetaDataRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation retrieveMetaData</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
+    <xs:complexType name="TReplaceSdoRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation replaceSDO</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
+    <xs:complexType name="TRetrieveSdoRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation retrieveSDO</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="checkHash" use="optional" type="xs:boolean"/>
+        <xs:attribute name="removeXmlDeclaration" use="optional" default="false" type="xs:boolean">
+        <xs:annotation>
+            <xs:documentation>this attribute is deprecated and shouldn't be used in new aplications</xs:documentation>
+        </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    
+    <xs:complexType name="TRetrieveXaipRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation retrieveXAIP</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    
+    <xs:complexType name="TRequestForEvidenceRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation requestForEvidence</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="getHtmlProtocols" use="optional" default="false" type="xs:boolean"/>
+    </xs:complexType>
+
+    <xs:complexType name="TDeleteSdoRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation deleteSDO</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
+    <xs:complexType name="TForceDeleteSdoRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation forceDeleteSDO</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="reason" type="TNonEmptyString" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TNavigateRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation navigate</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="path"         type="xs:string"             minOccurs="1" maxOccurs="1"/>
+            <xs:element name="queryOptions" type="TNavigateQueryOptions" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="maxResults"   type="xs:unsignedInt"        minOccurs="0" maxOccurs="1" default="0"/>
+            <xs:element name="start"        type="xs:string"             minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="useDatabase" use="optional" default="false" type="xs:boolean" />
+    </xs:complexType>
+
+    <xs:complexType name="TGetSchemaDataSDORequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation getSchemaDataSDO</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
+    <xs:complexType name="TSetExpirationDateTimeSDORequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation setExpirationDateTimeSDO</xs:documentation>
+        </xs:annotation>
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:element name="expirationDateTime" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="expirationDateUnlimited" type="TEmptyElement" minOccurs="1" maxOccurs="1"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="TForceDeferredSDORequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation setExpirationDateTimeSDO</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="reason"          type="TNonEmptyString" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="retentionPeriod" type="xs:duration" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TMoveSDORequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation moveSDO</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="newPath" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TGetAccountingDataRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation getAccountingData</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    
+    <xs:complexType name="TSimpleQueryRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation simpleQuery</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="select" type="TNonEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="kvPair" type="TSimpleQueryKVPair" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TGetVersionRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation getVersion</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
+    <xs:complexType name="TComponentVersion">
+        <xs:sequence>
+            <xs:element name="name"    type="xs:string"  minOccurs="1" maxOccurs="1"/>
+            <xs:element name="version" type="xs:string"  minOccurs="1" maxOccurs="1"/>
+            <xs:element name="major"   type="xs:integer" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="minor"   type="xs:integer" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="TGetAoidWithRefRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation getAOIDWithRef</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="externalObjectInData"  type="TExternalObjectInData"
+                                                     minOccurs="1" maxOccurs="unbounded"> 
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TUpdateFromHistoryRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation updateFromHistory</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
+    <xs:complexType name="TRegisterRefs4LXAIPRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation registerRefs4LXAIP</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="aoid"                   type="xs:string" 
+                                                      minOccurs="0" maxOccurs="1"/>
+            <xs:element name="externalObjectInData"  type="TExternalObject4LXAIPInData"
+                                                     minOccurs="1" maxOccurs="unbounded"> 
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+<!-- ================================================================= -->
+    
+    <xs:complexType name="TEvidenceRecord">
+        <xs:annotation>
+            <xs:documentation>SecDocs Evidence Record Information</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="TSPName"                      type="TNonEmptyString"        minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ERData"                       type="xs:base64Binary"        minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ERVerificationStatus"         type="TERVerificationStatus"  minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ERHtmlVerificationProtocol"   type="xs:base64Binary"        minOccurs="0" maxOccurs="1"/>
+            <xs:element name="ERXmlVerificationProtocol"    type="xs:base64Binary"        minOccurs="1" maxOccurs="1"/>
+            <xs:element name="HDOHashAlgorithmName"         type="TNonEmptyString"        minOccurs="1" maxOccurs="1"/>
+            <xs:element name="HDOHashAlgorithmOID"          type="TNonEmptyString"        minOccurs="1" maxOccurs="1"/>
+            <xs:element name="HDOHashValue"                 type="THDOHashValue"          minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="TNavigateQueryOptions">
+        <xs:annotation>
+            <xs:documentation>SecDocs WS operation navigate query types</xs:documentation>
+        </xs:annotation>
+        <xs:all>
+            <xs:element name="subPaths"   type="xs:boolean" default="true"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="aoids"      type="xs:boolean" default="true"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="subjects"   type="xs:boolean" default="true"  minOccurs="0" maxOccurs="1"/>
+        </xs:all>
+    </xs:complexType>
+    
+    <xs:complexType name="TNavigateSubpaths">
+        <xs:annotation>
+            <xs:documentation>list of subpaths in current path</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="subpath" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>SecDocs navigate subpath name</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TNavigateAOIDs">
+        <xs:annotation>
+            <xs:documentation>list of AOIDs in current path</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="aoid" type="TNavigateAOIDItem" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>SecDocs navigate AOID</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="TNavigateAOIDItem">
+        <xs:annotation>
+            <xs:documentation>AOID entry for WS operation navigate</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="subject" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>SecDocs navigateSDO subject for item of type AOID</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="id" use="required" type="TUuid"/>
+        <xs:attribute name="coid" use="optional" type="TCoid"/>
+    </xs:complexType>
+    
+    <xs:complexType name="TSubSchemas">
+        <xs:annotation>
+            <xs:documentation>SecDocs schema data for a given AOID</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="subSchema" type="TSubSchema" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="TSubSchema">
+        <xs:annotation>
+            <xs:documentation>SecDocs schema data for a given AOID</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="location"  type="xs:string"       minOccurs="0" maxOccurs="1"/>
+            <xs:element name="namespace" type="xs:string"       minOccurs="0" maxOccurs="1"/>
+            <xs:element name="data"      type="xs:base64Binary" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TSimpleQueryKVPair">
+        <xs:annotation>
+            <xs:documentation>SecDocs simpleQuery key/value pair</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="key"   type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="value" minOccurs="1" maxOccurs="1">
+                <xs:complexType>
+                    <xs:annotation>
+                        <xs:documentation>
+                        The value can be a string representation of a given set of types.
+                        If the value isn't a string, you can name the desired type via the 
+                        type attribute.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="type" use="optional" default="string">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="string"/>
+                                        <xs:enumeration value="integer"/>
+                                        <xs:enumeration value="decimal"/>
+                                        <xs:enumeration value="date"/>
+                                        <xs:enumeration value="boolean"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:attribute>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="operation" type="TSimpleQueryKVPairOperation" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TSimpleQueryResult">
+        <xs:annotation>
+            <xs:documentation>SecDocs simpleQuery result</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="aoid"   type="TUuid"              minOccurs="1" maxOccurs="1"/>
+            <xs:element name="kvPair" type="TSimpleQueryKVPair" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="THDOHashValue">
+        <xs:annotation>
+            <xs:documentation>SecDocs Hash Value Information</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="HashValue"    type="xs:base64Binary" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="HashValueHex" type="xs:string"       minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="TUuid">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="TEmptyElement">
+        <xs:annotation>
+            <xs:documentation>XXXX</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
+    <xs:simpleType name="TNonEmptyString">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"></xs:minLength>
+            <xs:whiteSpace value="collapse"></xs:whiteSpace>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="TCoid">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"></xs:minLength>
+            <xs:maxLength value="256"></xs:maxLength>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="TSubmitSdoResponseStatus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SDO submitted successfully"/>
+            <xs:enumeration value="SDO already submitted"/>
+            <xs:enumeration value="SDO already submitted and sealed"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="TMetaDataValue">
+        <xs:annotation>
+            <xs:documentation>meta data value</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="name"         type="xs:string"  minOccurs="1" maxOccurs="1"/>
+            <xs:element name="value"        type="xs:string"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="type"         type="xs:string"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="xpath"        type="xs:string"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="defaultValue" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="TSubMapMetaData">
+        <xs:annotation>
+            <xs:documentation>sub container map meta data</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="metaDataValue" type="TMetaDataValue"  minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="subMap"        type="TSubMapMetaData" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="xpath" use="optional" type="xs:string"/>
+    </xs:complexType>
+    
+    <xs:simpleType name="TERVerificationStatus">
+        <xs:restriction base="xs:string">
+            <!-- successful verification -->
+            <xs:enumeration value="SUCCESS" />
+            <!-- verification with warnings -->
+            <xs:enumeration value="WARN" />
+            <!-- verification failed -->
+            <xs:enumeration value="FAIL" />
+            <!-- verification result unknown -->
+            <xs:enumeration value="UNDEFINED" />
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="TNavigateSDOItemType">
+        <xs:restriction base="xs:string">
+            <!-- successful verification -->
+            <xs:enumeration value="path" />
+            <!-- verification with warnings -->
+            <xs:enumeration value="aoid" />
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="TSimpleQueryKVPairOperation">
+        <xs:annotation>
+            <xs:documentation>
+            By default only values are found that are equal to the given value.
+            With this operation you can change this behavior.
+            Exception: the string value default behavior is contains.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="equal"/>
+            <xs:enumeration value="eq"/>
+            <xs:enumeration value="not-equal"/>
+            <xs:enumeration value="ne"/>
+            <xs:enumeration value="greater-than"/>
+            <xs:enumeration value="gt"/>
+            <xs:enumeration value="greater-equal"/>
+            <xs:enumeration value="ge"/>
+            <xs:enumeration value="less-than"/>
+            <xs:enumeration value="lt"/>
+            <xs:enumeration value="less-equal"/>
+            <xs:enumeration value="le"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="TListSdoVersionsRequest">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation listSdoVersions</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
+    <xs:complexType name="TExternalObjectInData">
+        <xs:sequence>
+            <xs:element name="hashValue"         type="xs:base64Binary"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="hashAlgorithmName" type="xs:string"        minOccurs="0" maxOccurs="1"/>
+            <xs:element name="descriptionText"   type="xs:string"        minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="TExternalObjectOutData">
+        <xs:sequence>
+            <xs:element name="externalReferenceID" type="xs:string"        minOccurs="1" maxOccurs="1"/>
+            <xs:element name="hashValue"           type="xs:base64Binary"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="descriptionText"     type="xs:string"        minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+     <xs:complexType name="TExternalObject4LXAIPInData">
+        <xs:sequence>
+            <xs:element name="hashValue"         type="xs:base64Binary"  minOccurs="1" maxOccurs="1"/>
+            <xs:element name="hashAlgorithmName" type="xs:string"        minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="URI"                 type="xs:anyURI"        use="optional" />
+        <xs:attribute name="MimeType"            type="xs:string"        use="optional" />
+        <xs:attribute name="ObjectID"            type="xs:ID"            use="optional" />
+    </xs:complexType>
+        
+    <xs:complexType name="TStatusSdoExternalReferences">
+        <xs:sequence>
+            <xs:element name="externalReference" type="TStatusSdoExternalReference" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="TStatusSdoExternalReference">
+        <xs:sequence>
+            <xs:element name="refId"             type="xs:string"        minOccurs="1" maxOccurs="1"/>
+            <xs:element name="description"       type="xs:string"        minOccurs="0" maxOccurs="1"/>
+            <xs:element name="hashValue"         type="xs:base64Binary"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="hashAlgorithmName" type="xs:string"        minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+   
+</xs:schema>
