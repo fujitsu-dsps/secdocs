@@ -1,10 +1,10 @@
-# Fujitsu SecDocs SDO Web Services API
-Das Fujitsu SDO API ist eine Web Service Schnittstelle. In diesem Repository
-findet man alle benötigten WSDL- und Schemadateien und eine Beschreibung des
-SDO APIs.
+# Fujitsu SecDocs Web Services API
+Das Fujitsu SecDocs API ist eine Web Service Schnittstelle. In diesem 
+Repository findet man alle benötigten WSDL- und Schemadateien und eine 
+Beschreibung des APIs.
 
-- documents/3.1  
+- documents
   API Beschreibung
-- schemas/3.1
+- schemas
   API WSDLs und Schemata
 
