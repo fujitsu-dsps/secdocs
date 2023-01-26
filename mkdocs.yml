@@ -33,7 +33,7 @@ site_dir: docs
 use_directory_urls: true
 strict: true
 
-copyright: Copyright (c) 2022 <a href="https://fujitsu.com/de">Fujitsu Technology Solutions GmbH</a>
+copyright: Copyright (c) 2022-2023 <a href="https://fujitsu.com/de">Fujitsu Services GmbH</a>
 
 markdown_extensions:
     - pymdownx.highlight:
