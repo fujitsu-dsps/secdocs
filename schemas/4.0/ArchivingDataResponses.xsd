@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://ts.fujitsu.com/secdocs/v4_0/archiving" 
+           elementFormDefault="qualified" 
+           attributeFormDefault="unqualified" 
+           xmlns:tns="http://ts.fujitsu.com/secdocs/v4_0/archiving" 
+           xmlns:sd="http://ts.fujitsu.com/secdocs/v4_0/secdocs"
+           xmlns:xaip="http://www.bsi.bund.de/tr-esor/xaip/1.2"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+           xmlns:asic="http://uri.etsi.org/02918/v1.2.1#"
+           targetNamespace="http://ts.fujitsu.com/secdocs/v4_0/archiving">
+
+    <!-- 
+    SecDocs 4.0A00
+    Copyright (c) by Fujitsu 2022
+
+    This work is licensed under a
+    Creative Commons Attribution-NoDerivatives 4.0 International License.
+    https://creativecommons.org/licenses/by-nd/4.0/
+    
+    Any changes done by the end user to this file are not subject of any
+    guarantee or maintenance by Fujitsu.
+    -->
+
+    <xs:annotation>
+        <xs:documentation>SecDocs archiving request and response messages</xs:documentation>
+    </xs:annotation>
+    
+    <xs:import namespace="http://ts.fujitsu.com/secdocs/v4_0/secdocs" schemaLocation="secdocs.xsd"/>
+    <xs:include schemaLocation="ArchivingData.xsd"/>
+    <xs:import namespace="http://www.bsi.bund.de/tr-esor/xaip/1.2" schemaLocation="../XAIP/1.2/tr-esor-xaip-v1.2.xsd"/>
+
+    <xs:element name="getAoidResponse" type="TGetAoidResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation getAOID</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="metaDataSDOResponse" type="TMetaDataSDOResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation metaDataSDO</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    
+    <xs:element name="statusSDOResponse" type="TStatusSDOResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation statusSDO</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    
+    <xs:element name="retrieveMetaDataResponse" type="TRetrieveMetaDataResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation retrieveMetaData</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="submitSdoResponse" type="TSubmitSdoResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for WS operations of type submitSDO</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    
+     <xs:element name="replaceSdoResponse" type="TReplaceSdoResponse">
+     <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation replaceSDO</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="requestForEvidenceResponse" type="TRequestForEvidenceResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation requestForEvidence</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="deleteSdoResponse" type="TDeleteSdoResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation deleteSDO</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="forceDeleteSdoResponse" type="TForceDeleteSdoResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation forceDeleteSDO</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    
+    <xs:element name="navigateResponse" type="TNavigateResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation navigate</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    
+    <xs:element name="getSchemaDataSDOResponse" type="TGetSchemaDataSDOResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation getSchemaDataSDO</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="setExpirationDateTimeSDOResponse" type="TSetExpirationDateTimeSDOResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation setExpirationDateTimeSDO</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="forceDeferredSDOResponse" type="TForceDeferredSDOResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation setExpirationDateTimeSDO</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    
+    <xs:element name="moveSDOResponse" type="TMoveSDOResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation moveSDO</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="getAccountingDataResponse" type="sd:TGetAccountingDataResponseType">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation getAccountingData</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="simpleQueryResponse" type="TSimpleQueryResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation simpleQuery</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="listSdoVersionsResponse" type="TListSdoVersionsResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body request data for the WS operation listSdoVersions</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:element name="getVersionResponse" type="TGetVersionResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation getVersion</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+        
+    <xs:element name="getAoidWithRefResponse" type="TGetAoidWithRefResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation getAOIDWithRef</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    
+    <xs:element name="updateFromHistoryResponse" type="TUpdateFromHistoryResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation updateFromHistory</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    
+    <xs:element name="registerRefs4LXAIPResponse" type="TRegisterRefs4LXAIPResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation registerRefs4LXAIP</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:complexType name="TListSdoVersionsResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation listSdoVersions</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element ref="statusSDOResponse" maxOccurs="unbounded" minOccurs="0"></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+
+<!-- ================================================================= -->
+
+    <xs:annotation>
+        <xs:documentation>complex data types for the SOAP body request and response messages</xs:documentation>
+    </xs:annotation>
+
+    <xs:complexType name="TGetAoidResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation getAOID</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="aoid" type="TUuid"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="TMetaDataSDOResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation metaDataSDO</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="version"       type="xs:string"             minOccurs="1" maxOccurs="1"/>
+            <xs:element name="coid"          type="TCoid"                 minOccurs="0" maxOccurs="1"/>
+            <xs:element name="versionNumber" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="metaDataValue" type="TMetaDataValue"        minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="subMap"        type="TSubMapMetaData"       minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TStatusSDOResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation statusSDO</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="aoid"                     type="TUuid"       minOccurs="1" maxOccurs="1"/>
+            <xs:element name="coid"                     type="TCoid"       minOccurs="0" maxOccurs="1"/>
+            <xs:element name="version"                  type="xs:string"   minOccurs="1" maxOccurs="1"/>
+            <xs:element name="status"                   type="xs:string"   minOccurs="1" maxOccurs="1"/>
+            <xs:element name="mandant"                  type="xs:string"   minOccurs="1" maxOccurs="1"/>
+            <xs:element name="organisation"             type="xs:string"   minOccurs="1" maxOccurs="1"/>
+            <xs:element name="sdoPath"                  type="xs:string"   minOccurs="0" maxOccurs="1"/>
+            <xs:element name="sdoType"                  type="xs:string"   minOccurs="0" maxOccurs="1"/>
+            <xs:element name="sdoTypeReplaceable"       type="xs:boolean"  minOccurs="0" maxOccurs="1"/>
+            <xs:element name="externalReferences"       type="TStatusSdoExternalReferences" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="sdoSize"                  type="xs:long"     minOccurs="0" maxOccurs="1"/>
+            <xs:element name="shortSubject"             type="xs:string"   minOccurs="0" maxOccurs="1"/>
+            <xs:element name="lastModificationDateTime" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+            <xs:choice minOccurs="0" maxOccurs="1">
+                <xs:element name="expirationDateTime"      type="xs:dateTime"   minOccurs="1" maxOccurs="1"/>
+                <xs:element name="expirationDateUnlimited" type="TEmptyElement" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="expirationDateDeferred"  type="TEmptyElement" minOccurs="1" maxOccurs="1"/>
+            </xs:choice>
+            <xs:element name="archiveDateTime"          type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="versionDateTime"          type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="versionNumber"            type="xs:long"     minOccurs="1" maxOccurs="1"/>
+            <xs:element name="sealedDateTime"           type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="tsp"                      type="xs:string"   minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="TRetrieveMetaDataResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation retrieveMetaData</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="ObjectId"    type="TUuid"       minOccurs="1" maxOccurs="1"/>
+            <xs:choice minOccurs="1" maxOccurs="1">
+                <xs:element name="RetentionTime"          type="xs:dateTime"   minOccurs="1" maxOccurs="1"/>
+                <xs:element name="RetentionTimeUnlimited" type="TEmptyElement" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="RetentionTimeDeferred"  type="TEmptyElement" minOccurs="1" maxOccurs="1"/>
+            </xs:choice>
+            <xs:element name="ArchiveDate" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="SDOType"     type="xs:string"   minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TSubmitSdoResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for WS operations of type submitSDO</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="status" type="TSubmitSdoResponseStatus" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="aoid" type="TUuid" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="TReplaceSdoResponse">
+     <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for WS operations of type replaceSDO</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="status" type="TReplaceSdoResponseStatus" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="TReplaceSdoResponseStatus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SDO replaced successfully"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="TRequestForEvidenceResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation requestForEvidence</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="SignatureVerificationInfo" type="xs:base64Binary" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>SecDocs Signature Verification Information on document signatures</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SignatureVerificationHtmlProtocol" type="xs:base64Binary" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>SecDocs Signature Verification HTML Protocol on document signatures</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SDO" type="xs:base64Binary" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>SecDocs SDO data</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="EvidenceRecord" type="TEvidenceRecord" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>SecDocs Evidence Records - one per TSP</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TDeleteSdoResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation deleteSDO</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
+    <xs:complexType name="TForceDeleteSdoResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation forceDeleteSDO</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    
+    <xs:complexType name="TNavigateResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation navigate</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="path"         type="xs:string"             minOccurs="1" maxOccurs="1"/>
+            <xs:element name="queryOptions" type="TNavigateQueryOptions" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="maxResults"   type="xs:unsignedInt"        minOccurs="1" maxOccurs="1"/>
+            <xs:element name="totalResults" type="xs:unsignedInt"        minOccurs="1" maxOccurs="1"/>
+            <xs:element name="next"         type="xs:string"             minOccurs="0" maxOccurs="1"/>
+            <xs:element name="subpaths"     type="TNavigateSubpaths"     minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>List of subpaths under given path</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="aoids"        type="TNavigateAOIDs"     minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>List of AOIDs under given path</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TGetSchemaDataSDOResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation getSchemaDataSDO</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="sdoType"            type="TNonEmptyString" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="sdoTypeReplaceable" type="xs:boolean"      minOccurs="1" maxOccurs="1"/>
+            <xs:element name="filterData"         type="xs:base64Binary" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="mainSchemaData"     type="xs:base64Binary" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="subSchemas"         type="TSubSchemas"     minOccurs="0" maxOccurs="1"/>
+            <xs:element name="policyData"         type="xs:base64Binary" minOccurs="0" maxOccurs="1"/>            
+            <xs:element name="timestampPolicyData"         type="xs:base64Binary" minOccurs="0" maxOccurs="1"/>            
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="TSetExpirationDateTimeSDOResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation setExpirationDateTimeSDO</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
+    <xs:complexType name="TForceDeferredSDOResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation setExpirationDateTimeSDO</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    
+    <xs:complexType name="TMoveSDOResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation moveSDO</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    
+    <xs:complexType name="TSimpleQueryResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation simpleQuery</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="result" type="TSimpleQueryResult" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="TGetVersionResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation getVersion</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="component" type="TComponentVersion"   minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element name="nodeName"  type="tns:TNonEmptyString" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+       
+    <xs:complexType name="TGetAoidWithRefResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation getAOIDWithRef</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="aoid"                   type="TUuid" 
+                                                      minOccurs="1" maxOccurs="1"/>
+            <xs:element name="externalObjectOutData"  type="TExternalObjectOutData" 
+                                                      minOccurs="1" maxOccurs="unbounded"/> 
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="TUpdateFromHistoryResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation updateFromHistory</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
+   <xs:complexType name="TRegisterRefs4LXAIPResponse">
+        <xs:annotation>
+            <xs:documentation>SecDocs SOAP body response data for the WS operation registerRefs4LXAIP</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="aoid"                   type="xs:string" 
+                                                      minOccurs="1" maxOccurs="1"/>
+            <xs:element name="references"         minOccurs="1" maxOccurs="1">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="refData"         minOccurs="1" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element ref="xaip:dataObject"  minOccurs="1" maxOccurs="1" />
+                                </xs:sequence>
+                                <xs:attribute name="refID"        type="xs:string"        use="required" />
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

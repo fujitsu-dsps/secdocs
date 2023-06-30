@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <!-- 
+    SecDocs 4.0A00
+    Copyright (c) by Fujitsu 2022
+
+    This work is licensed under a
+    Creative Commons Attribution-NoDerivatives 4.0 International License.
+    https://creativecommons.org/licenses/by-nd/4.0/
+    
+    Any changes done by the end user to this file are not subject of any
+    guarantee or maintenance by Fujitsu.
+    -->
+	<xs:complexType name="TNamespace">
+		<xs:attribute name="uri" type="xs:string" use="required"/>
+		<xs:attribute name="prefix" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TElement">
+		<xs:attribute name="mapname" type="xs:string" use="required"/>
+		<xs:attribute name="xpath" type="xs:string" use="optional"/>
+		<xs:attribute name="default" type="xs:string" use="optional"/>
+		<xs:attribute name="maptype" use="optional" default="string">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="string"/>
+                    <xs:enumeration value="stream"/>
+                    <xs:enumeration value="integer"/>
+                   <xs:enumeration value="decimal"/>
+                  <xs:enumeration value="boolean"/>
+                  <xs:enumeration value="date"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute> 
+	</xs:complexType>
+	<xs:complexType name="TNode">
+		<xs:sequence>
+			<xs:element name="element" type="TElement" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="mapname" type="xs:string" use="required"/>
+		<xs:attribute name="xpath" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TAlias">
+		<xs:attribute name="mapname" type="xs:string" use="required"/>
+		<xs:attribute name="value" type="xs:string" use="required"/>
+		<xs:attribute name="to" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="filter" type="TFilter"/>
+	<xs:complexType name="TFilter">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name="element" type="TElement"/>
+			<xs:element name="node" type="TNode"/>
+			<xs:element name="namespace" type="TNamespace"/>
+			<xs:element name="alias" type="TAlias"/>
+		</xs:choice>
+		<xs:attribute name="schema" use="required"/>
+		<xs:attribute name="version" type="xs:decimal" use="required"/>
+		<xs:attribute name="mode" use="optional" default="submit">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="submit"/>
+					<xs:enumeration value="retrieve"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

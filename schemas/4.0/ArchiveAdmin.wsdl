@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ArchiveAdmin"
+    targetNamespace="http://ts.fujitsu.com/secdocs/ws/v4_0/archiveAdmin" 
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+    xmlns:tns="http://ts.fujitsu.com/secdocs/ws/v4_0/archiveAdmin"
+    xmlns:secdocs="http://ts.fujitsu.com/secdocs/v4_0/secdocs" 
+    xmlns:upd="http://ts.fujitsu.com/secdocs/v4_0/adminUpdateData" 
+    xmlns:xsd1="http://ts.fujitsu.com/secdocs/v4_0/adminData">
+    
+    <!-- 
+    SecDocs 4.0A00
+    Copyright (c) by Fujitsu 2022
+
+    This work is licensed under a
+    Creative Commons Attribution-NoDerivatives 4.0 International License.
+    https://creativecommons.org/licenses/by-nd/4.0/
+    
+    Any changes done by the end user to this file are not subject of any
+    guarantee or maintenance by Fujitsu.
+    -->
+
+    <documentation>
+      SecDocs ArchiveAdmin Web Service WSDL file.
+    </documentation>
+
+    <types>
+        <xsd:schema targetNamespace="http://ts.fujitsu.com/secdocs/ws/v4_0/archiveAdmin">
+          <xsd:import schemaLocation="AdminData.xsd"
+                namespace="http://ts.fujitsu.com/secdocs/v4_0/adminData" />
+          <xsd:import schemaLocation="AdminUpdateData.xsd"
+                namespace="http://ts.fujitsu.com/secdocs/v4_0/adminUpdateData" />
+          <xsd:import schemaLocation="secdocs.xsd"
+                namespace="http://ts.fujitsu.com/secdocs/v4_0/secdocs" />
+        </xsd:schema>
+    </types>
+    <message name="SecDocsSoapHeader">
+        <documentation>SecDocs related data</documentation>
+        <part name="secDocsSoapHeader" element="secdocs:soapHeaderData"/>
+    </message>
+    <message name="FaultMessage">
+        <documentation>SecDocs fault message data</documentation>
+        <part name="secDocsSoapFault" element="secdocs:faultDetails" />
+    </message>
+    <message name="GetHashAlgorithmsRequest">
+        <part name="body" element="xsd1:GetRequest" />
+    </message>
+    <message name="GetHashAlgorithmsResponse">
+        <part name="body" element="xsd1:GetHashAlgorithms" />
+    </message>
+    <message name="GetSignatureAlgorithmsRequest">
+        <part name="body" element="xsd1:GetRequest" />
+    </message>
+    <message name="GetSignatureAlgorithmsResponse">
+        <part name="body" element="xsd1:GetSignatureAlgorithms" />
+    </message>
+    <message name="GetMandantsRequest">
+        <part name="body" element="xsd1:GetRequest" />
+    </message>
+    <message name="GetMandantsResponse">
+        <part name="body" element="xsd1:GetMandants" />
+    </message>
+
+    <message name="CreateMandantRequest">
+        <part name="body" element="xsd1:CreateMandant"></part>
+    </message>
+    <message name="CreateMandantResponse">
+        <part name="body" element="xsd1:result" />
+    </message>
+    <message name="CreateMandantXAIPRequest">
+        <part name="body" element="xsd1:CreateMandantXAIP"></part>
+    </message>
+    <message name="CreateMandantXAIPResponse">
+        <part name="body" element="xsd1:result" />
+    </message>
+    <message name="UpdateMandantRequest">
+        <part name="body" element="xsd1:Mandant"></part>
+    </message>
+    <message name="UpdateMandantResponse">
+        <part name="body" element="xsd1:result" />
+    </message>
+     <message name="UpdateTSPRequest">
+        <part name="body" element="upd:TSP"></part>
+    </message>
+    <message name="UpdateTSPResponse">
+        <part name="body" element="xsd1:result" />
+    </message>
+    <message name="GetTSPsRequest">
+        <part name="body" element="xsd1:GetRequest" />
+    </message>
+    <message name="GetTSPsResponse">
+        <part name="body" element="xsd1:GetTSPs"></part>
+    </message>
+    <message name="CreateTSPRequest">
+        <part name="body" element="xsd1:TSP"></part>
+    </message>
+    <message name="CreateTSPResponse">
+        <part name="body" element="xsd1:result"></part>
+    </message>
+    <message name="SetCredentialsRequest">
+        <part name="body" element="xsd1:Credentials" />
+    </message>
+    <message name="SetCredentialsResponse">
+        <part name="body" element="xsd1:result" />
+   </message>
+    <message name="GetVersionRequest">
+        <part name="body" element="xsd1:GetRequest" />
+    </message>
+    <message name="GetVersionResponse">
+        <part name="body" element="xsd1:GetVersion" />
+   </message>
+   <message name="GetAccountingDataRequest">
+        <part name="body" element="xsd1:getAccountingDataArchivAdmRequest"/>
+   </message>
+   <message name="GetAccountingDataResponse">
+        <part name="body" element="xsd1:getAccountingDataArchivAdmResponse"/>
+   </message>
+      <message name="PerformActionRequest">
+        <part name="body" element="xsd1:PerformAction" />
+    </message>
+    <message name="PerformActionResponse">
+        <wsdl:part name="body" element="xsd1:result"></wsdl:part>
+    </message>
+      <message name="GetArchiveInfoRequest">
+        <part name="body" element="xsd1:GetRequest" />
+    </message>
+    <message name="GetArchiveInfoResponse">
+        <wsdl:part name="body" element="xsd1:GetArchiveInfo"></wsdl:part>
+    </message>
+     <message name="DeleteTestMandantRequest">
+        <part name="body" element="xsd1:DeleteTestMandant" />
+    </message>
+    <message name="DeleteTestMandantResponse">
+        <part name="body" element="xsd1:result"></part>
+    </message>
+    <message name="GetStatisticDataRequest">
+        <part name="body" element="xsd1:getStatisticalDataRequest"/>
+    </message>
+    <message name="GetStatisticDataResponse">
+        <part name="body" element="xsd1:getStatisticalDataResponse"/>
+    </message>
+
+   <portType name="ArchiveAdminPortType">
+        <operation name="getHashAlgorithms">
+            <input message="tns:GetHashAlgorithmsRequest" />
+            <output message="tns:GetHashAlgorithmsResponse" />
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <operation name="getSignatureAlgorithms">
+            <input message="tns:GetSignatureAlgorithmsRequest" />
+            <output message="tns:GetSignatureAlgorithmsResponse" />
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <operation name="getMandants">
+            <input message="tns:GetMandantsRequest" />
+            <output message="tns:GetMandantsResponse" />
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <operation name="createMandant">
+            <input message="tns:CreateMandantRequest" />
+            <output message="tns:CreateMandantResponse" />
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <operation name="createMandantXAIP">
+            <input message="tns:CreateMandantXAIPRequest" />
+            <output message="tns:CreateMandantXAIPResponse" />
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <operation name="createTSP">
+            <input message="tns:CreateTSPRequest"></input>
+            <output message="tns:CreateTSPResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+         <operation name="updateTSP">
+            <input message="tns:UpdateTSPRequest"></input>
+            <output message="tns:UpdateTSPResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <operation name="getTSPs">
+            <input message="tns:GetTSPsRequest"></input>
+            <output message="tns:GetTSPsResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <operation name="setCredentials">
+            <input message="tns:SetCredentialsRequest" />
+            <output message="tns:SetCredentialsResponse" />
+             <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+
+         <operation name="getVersion">
+            <input message="tns:GetVersionRequest" />
+            <output message="tns:GetVersionResponse" />
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>     
+        
+        <operation name="getAccountingData">
+            <wsdl:input message="tns:GetAccountingDataRequest" />
+            <wsdl:output message="tns:GetAccountingDataResponse" />
+            <wsdl:fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <wsdl:operation name="performAction">
+            <wsdl:input message="tns:PerformActionRequest"></wsdl:input>
+            <wsdl:output message="tns:PerformActionResponse"></wsdl:output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </wsdl:operation>
+        
+        <wsdl:operation name="getArchiveInfo">
+            <wsdl:input message="tns:GetArchiveInfoRequest"></wsdl:input>
+            <wsdl:output message="tns:GetArchiveInfoResponse"></wsdl:output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </wsdl:operation>
+        
+         <wsdl:operation name="deleteTestMandant">
+            <wsdl:input message="tns:DeleteTestMandantRequest"></wsdl:input>
+            <wsdl:output message="tns:DeleteTestMandantResponse"></wsdl:output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </wsdl:operation>
+        
+        <wsdl:operation name="getStatisticalData">
+            <wsdl:input message="tns:GetStatisticDataRequest"></wsdl:input>
+            <wsdl:output message="tns:GetStatisticDataResponse"></wsdl:output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </wsdl:operation>
+        
+           
+    </portType>
+    <binding name="ArchiveAdminPortTypeBinding" type="tns:ArchiveAdminPortType">
+        <soap:binding style="document"
+            transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="getHashAlgorithms">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="getSignatureAlgorithms">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="getMandants">
+            <wsdl:documentation>Returns a List of Mandants containing
+            </wsdl:documentation>
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="createMandant">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+         <operation name="createMandantXAIP">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="createTSP">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="updateTSP">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="getTSPs">
+            <wsdl:documentation>Returns a List of TSPs
+            </wsdl:documentation>
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="setCredentials">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+               <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+               <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+         <operation name="getVersion">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        
+        <operation name="getAccountingData">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" 
+                    use="literal"/>
+                <soap:body parts="body" use="literal"/>
+            </input>
+            <output>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="performAction">
+            <wsdl:documentation> start event driven Processes
+            </wsdl:documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+               <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" 
+                    use="literal"/>
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+               <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" 
+                    use="literal"/>
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="getArchiveInfo">
+            <wsdl:documentation> start event driven Processes
+            </wsdl:documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+               <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" 
+                    use="literal"/>
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+               <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" 
+                    use="literal"/>
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="deleteTestMandant">
+            <wsdl:documentation> start event driven Processes
+            </wsdl:documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+               <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" 
+                    use="literal"/>
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+               <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" 
+                    use="literal"/>
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="getStatisticalData">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" 
+                    use="literal"/>
+                <soap:body parts="body" use="literal"/>
+            </input>
+            <output>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+        
+         
+    </binding>
+    <service name="ArchiveAdminService">
+        <port name="ArchiveAdminPortTypeBindingPort" binding="tns:ArchiveAdminPortTypeBinding">
+            <soap:address location="http://localhost:8080/archiver/ws/4.0/archiveAdmin" />
+        </port>
+    </service>
+</definitions>

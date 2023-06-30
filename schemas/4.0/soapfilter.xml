@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<filter version="1.0" schema="soap">
+<!-- 
+SecDocs 4.0A00
+Copyright (c) by Fujitsu 2023
+
+This work is licensed under a
+Creative Commons Attribution-NoDerivatives 4.0 International License.
+https://creativecommons.org/licenses/by-nd/4.0/
+    
+Any changes done by the end user to this file are not subject of any
+guarantee or maintenance by Fujitsu.
+ -->
+<namespace prefix="env" uri="http://schemas.xmlsoap.org/soap/envelope/"/>
+<namespace prefix="sd"  uri="http://ts.fujitsu.com/secdocs/v4_0/secdocs"/>
+<element mapname="$Version"   xpath="/env:Envelope/Header/sd:soapHeaderData/@version"/>
+<element mapname="$Role"      xpath="/env:Envelope/Header/sd:soapHeaderData/security/principal/role"/>
+<element mapname="$Mandant"   xpath="/env:Envelope/Header/sd:soapHeaderData/security/principal/mandant"/>
+<element mapname="$OrgID"     xpath="/env:Envelope/Header/sd:soapHeaderData/security/principal/orgID"/>
+<element mapname="$Password"  xpath="/env:Envelope/Header/sd:soapHeaderData/security/password"/>
+<element mapname="$Token"     xpath="/env:Envelope/Header/sd:soapHeaderData/security/token"/>
+<element mapname="$Operation" xpath="/env:Envelope/Header/sd:soapHeaderData/operation"/>
+<element mapname="$SDOType"   xpath="/env:Envelope/Header/sd:soapHeaderData/SDOType"/>
+<element mapname="$COID"      xpath="/env:Envelope/Header/sd:soapHeaderData/coid"/>
+<element mapname="$AOID"      xpath="/env:Envelope/Header/sd:soapHeaderData/aoid"/>
+<element mapname="$AuditID"   xpath="/env:Envelope/Header/sd:soapHeaderData/auditID"/>
+<stop xpath="/env:Envelope/Body"/>
+</filter>

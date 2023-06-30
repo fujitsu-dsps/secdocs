@@ -1,0 +1,37 @@
+﻿<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"> 
+<!-- 
+SecDocs 4.0A00
+Copyright (c) by Fujitsu 2022
+
+This work is licensed under a
+Creative Commons Attribution-NoDerivatives 4.0 International License.
+https://creativecommons.org/licenses/by-nd/4.0/
+    
+Any changes done by the end user to this file are not subject of any
+guarantee or maintenance by Fujitsu.
+ -->
+
+ <xsd:element name="VerificationInfo1"> 
+  <xsd:complexType> 
+   <xsd:sequence> 
+    <xsd:element name="Aoid" type="xsd:string"/> 
+       <xsd:element name="VerificationProtocolSum" minOccurs="0"> 
+        <xsd:complexType> 
+         <xsd:complexContent> 
+          <xsd:extension base="xsd:anyType"> 
+		   <xsd:attribute name="version" type="xsd:string"></xsd:attribute>
+           <xsd:attribute name="encoding" type="xsd:string"/> 
+          </xsd:extension> 
+         </xsd:complexContent> 
+        </xsd:complexType> 
+       </xsd:element> 
+       <xsd:element name="RevocationValuesSum" type="xsd:base64Binary" 
+minOccurs="0"/> 
+       <xsd:element name="CertificateValuesSum" type="xsd:base64Binary" 
+minOccurs="0"/> 
+   </xsd:sequence> 
+   <xsd:attribute name="version" type="xsd:string" use="required" />
+  </xsd:complexType> 
+ </xsd:element>  
+ 
+</xsd:schema>

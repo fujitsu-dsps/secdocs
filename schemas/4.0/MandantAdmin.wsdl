@@ -1,0 +1,1066 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="MandantAdmin"
+    targetNamespace="http://ts.fujitsu.com/secdocs/ws/v4_0/mandantAdmin" 
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+    xmlns:tns="http://ts.fujitsu.com/secdocs/ws/v4_0/mandantAdmin"
+    xmlns:ns3="http://ts.fujitsu.com/secdocs/v4_0/secdocs" 
+    xmlns:xsd1="http://ts.fujitsu.com/secdocs/v4_0/adminData"
+    xmlns:xsd2="http://ts.fujitsu.com/secdocs/v4_0/adminUpdateData">
+    <!-- 
+    SecDocs 4.0A00
+    Copyright (c) by Fujitsu 2022
+
+    This work is licensed under a
+    Creative Commons Attribution-NoDerivatives 4.0 International License.
+    https://creativecommons.org/licenses/by-nd/4.0/
+    
+    Any changes done by the end user to this file are not subject of any
+    guarantee or maintenance by Fujitsu.
+    -->
+
+    <documentation>
+      SecDocs MandantAdmin Web Service WSDL file.
+    </documentation>
+
+    <types>
+        <xsd:schema targetNamespace="http://ts.fujitsu.com/secdocs/ws/v4_0/mandantAdmin">
+            <xsd:import schemaLocation="AdminData.xsd"
+                namespace="http://ts.fujitsu.com/secdocs/v4_0/adminData" />
+            <xsd:import schemaLocation="AdminUpdateData.xsd"
+                namespace="http://ts.fujitsu.com/secdocs/v4_0/adminUpdateData" />
+            <xsd:import schemaLocation="secdocs.xsd"
+                namespace="http://ts.fujitsu.com/secdocs/v4_0/secdocs" />
+        </xsd:schema>
+    </types>
+    <message name="SecDocsSoapHeader">
+        <documentation>SecDocs related data</documentation>
+        <part name="secDocsSoapHeader" element="ns3:soapHeaderData" />
+    </message>
+    <message name="FaultMessage">
+        <documentation>SecDocs fault message data</documentation>
+        <part name="secDocsSoapFault" element="ns3:faultDetails" />
+    </message>
+    <message name="GetHashAlgorithmsRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData" />
+        <part name="body" element="xsd1:GetRequest" />
+    </message>
+    <message name="GetHashAlgorithmsResponse">
+        <part name="body" element="xsd1:GetHashAlgorithms" />
+        <part name="secDocsHeader" element="ns3:soapHeaderData" />
+    </message>
+    <message name="SetCredentialsRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData" />
+        <part name="body" element="xsd1:Credentials" />
+    </message>
+    <message name="SetCredentialsResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData" />
+        <part name="body" element="xsd1:result" />
+    </message>
+    <message name="GetSignatureAlgorithmsRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData" />
+        <part name="body" element="xsd1:GetRequest" />
+    </message>
+    <message name="GetSignatureAlgorithmsResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData" />
+        <part name="body" element="xsd1:GetSignatureAlgorithms" />
+    </message>
+    <message name="GetTSPsRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:GetRequest" />
+    </message>
+    <message name="GetTSPsResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:GetTSPs"></part>
+    </message>
+    <message name="GetSDOTypesRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:GetRequest" />
+    </message>
+    <message name="GetSDOTypesResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:GetSDOTypes"></part>
+    </message>
+    <message name="GetOrganisationsRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:GetRequest" />
+    </message>
+    <message name="GetOrganisationsResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:GetOrganisations"></part>
+    </message>
+    <message name="CreateOrganisationRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:Organisation"></part>
+    </message>
+    <message name="CreateOrganisationResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:result"></part>
+     </message>
+    <message name="CreateSDOTypeRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:SDOType"></part>
+    </message>
+    <message name="CreateSDOTypeResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:result"></part>
+    </message>
+     <message name="ModifySDOTypeRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:ModifySDOType"></part>
+    </message>
+    <message name="ModifySDOTypeResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:result"></part>
+    </message>
+     <message name="ModifyXAIPRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:ModifyXAIP"></part>
+    </message>
+    <message name="ModifyXAIPResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:result"></part>
+    </message>
+    <message name="RenewHashAlgorithmRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:RenewHashAlgorithm"></part>
+    </message>
+    <message name="RenewHashAlgorithmResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:result"></part>
+    </message>
+    <message name="RenewTSPSignatureRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:RenewTSPSignature"></part>
+    </message>
+    <message name="RenewTSPSignatureResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:result"></part>
+    </message>
+    <message name="GetVersionRequest">
+        <part name="body" element="xsd1:GetRequest" />
+    </message>
+    <message name="GetVersionResponse">
+        <part name="body" element="xsd1:GetVersion" />
+   </message>
+    <message name="UpdateMandantRequest">
+        <part name="body" element="xsd2:Mandant" />
+    </message>
+    <message name="UpdateMandantResponse">
+        <part name="body" element="xsd1:result" />
+   </message>
+   <message name="GetMandantPropertiesRequest">
+        <part name="body" element="xsd1:GetRequest" />
+    </message>
+    <message name="GetMandantPropertiesResponse">
+        <part name="body" element="xsd2:Mandant" />
+   </message>
+   <message name="UpdateOrganisationRequest">
+        <part name="body" element="xsd2:Organisation" />
+    </message>
+    <message name="UpdateOrganisationResponse">
+        <part name="body" element="xsd1:result" />
+   </message>
+   <message name="CreateRoleRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:CreateRole"></part>
+    </message>
+    <message name="CreateRoleResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:result"></part>
+    </message>
+    <message name="UpdateRoleRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:Role"></part>
+    </message>
+    <message name="UpdateRoleResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:result"></part>
+    </message>
+    <message name="DeleteRoleRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:DeleteRole"></part>
+    </message>
+    <message name="DeleteRoleResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:result"></part>
+    </message>
+    <message name="GetRolesRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:GetRolesRequest" />
+    </message>
+    <message name="GetRolesResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:GetRolesResponse"></part>
+    </message>
+    
+     <message name="CreatePrivilegeRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:Privilege"></part>
+    </message>
+    <message name="CreatePrivilegeResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:result"></part>
+    </message>
+    <message name="UpdatePrivilegeRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:Privilege"></part>
+    </message>
+    <message name="UpdatePrivilegeResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:result"></part>
+    </message>
+    <message name="DeletePrivilegeRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:SelectByName"></part>
+    </message>
+    <message name="DeletePrivilegeResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:result"></part>
+    </message>
+    <message name="GetPrivilegesRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:GetRequest" />
+    </message>
+    <message name="GetPrivilegesResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:GetPrivileges"></part>
+    </message>
+    <message name="GetAccountingDataRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:getAccountingDataMandantAdmRequest" />
+    </message>
+    <message name="GetAccountingDataResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:getAccountingDataMandantAdmResponse"></part>
+    </message>
+    <message name="PerformActionRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:PerformAction" />
+    </message>
+    <message name="PerformActionResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:result"></part>
+    </message>
+    <message name="DeleteSDOTypeRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:SelectByName"></part>
+    </message>
+    <message name="DeleteSDOTypeResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:result"></part>
+    </message>
+    
+    <message name="GetArchiveInfoRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:GetRequest"></part>
+    </message>
+    <message name="GetArchiveInfoResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:GetArchiveInfo"></part>
+    </message>
+    <message name="ClearAOIDsRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:ClearAOIDs" />
+    </message>
+    <message name="ClearAOIDsResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:result"></part>
+    </message>
+    <message name="ConvertTestMandantRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:ConvertTestMandant" />
+    </message>
+    <message name="ConvertTestMandantResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:result"></part>
+    </message>
+     <message name="GetArchivingOperationsRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:GetRequest" />
+    </message>
+    <message name="GetArchivingOperationsResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:GetOperationsResponse"></part>
+    </message>
+    <message name="GetAuditLogFileNamesRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:GetRequest" />
+    </message>
+    <message name="GetAuditLogFileNamesResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:GetAuditLogFileNamesResponse"></part>
+    </message>    
+    <message name="GetAuditLogFileRequest">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:GetAuditLogFileRequest" />
+    </message>
+    <message name="GetAuditLogFileResponse">
+        <part name="secDocsHeader" element="ns3:soapHeaderData"></part>
+        <part name="body" element="xsd1:GetAuditLogFileResponse"></part>
+    </message>    
+    
+
+    <portType name="MandantAdminPortType">
+        <operation name="getHashAlgorithms">
+            <input message="tns:GetHashAlgorithmsRequest" />
+            <output message="tns:GetHashAlgorithmsResponse" />
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <operation name="setCredentials">
+            <input message="tns:SetCredentialsRequest" />
+            <output message="tns:SetCredentialsResponse" />
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <operation name="getSignatureAlgorithms">
+            <input message="tns:GetSignatureAlgorithmsRequest" />
+            <output message="tns:GetSignatureAlgorithmsResponse" />
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <operation name="getTSPs">
+            <input message="tns:GetTSPsRequest"></input>
+            <output message="tns:GetTSPsResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <operation name="getSDOTypes">
+            <input message="tns:GetSDOTypesRequest"></input>
+            <output message="tns:GetSDOTypesResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <operation name="getOrganisations">
+            <input message="tns:GetOrganisationsRequest"></input>
+            <output message="tns:GetOrganisationsResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <operation name="createOrganisation">
+            <input message="tns:CreateOrganisationRequest"></input>
+            <output message="tns:CreateOrganisationResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+         <operation name="createSDOType">
+            <input message="tns:CreateSDOTypeRequest"></input>
+            <output message="tns:CreateSDOTypeResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+           <operation name="modifySDOType">
+            <input message="tns:ModifySDOTypeRequest"></input>
+            <output message="tns:ModifySDOTypeResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+           <operation name="modifyXAIP">
+            <input message="tns:ModifyXAIPRequest"></input>
+            <output message="tns:ModifyXAIPResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <operation name="renewHashAlgorithm">
+            <input message="tns:RenewHashAlgorithmRequest"></input>
+            <output message="tns:RenewHashAlgorithmResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <operation name="renewTSPSignature">
+            <input message="tns:RenewTSPSignatureRequest"></input>
+            <output message="tns:RenewTSPSignatureResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+         <operation name="getVersion">
+            <input message="tns:GetVersionRequest" />
+            <output message="tns:GetVersionResponse" />
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+         <operation name="updateMandant">
+            <input message="tns:UpdateMandantRequest" />
+            <output message="tns:UpdateMandantResponse" />
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+         <operation name="getMandantProperties">
+            <input message="tns:GetMandantPropertiesRequest" />
+            <output message="tns:GetMandantPropertiesResponse" />
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+                 <operation name="updateOrganisation">
+            <input message="tns:UpdateOrganisationRequest" />
+            <output message="tns:UpdateOrganisationResponse" />
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+                <operation name="createRole">
+            <input message="tns:CreateRoleRequest"></input>
+            <output message="tns:CreateRoleResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <operation name="deleteRoles">
+            <input message="tns:DeleteRoleRequest"></input>
+            <output message="tns:DeleteRoleResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <operation name="updateRole">
+            <input message="tns:UpdateRoleRequest"></input>
+            <output message="tns:UpdateRoleResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <operation name="getRoles">
+            <input message="tns:GetRolesRequest"></input>
+            <output message="tns:GetRolesResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        
+        <operation name="createPrivilege">
+            <input message="tns:CreatePrivilegeRequest"></input>
+            <output message="tns:CreatePrivilegeResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <operation name="deletePrivileges">
+            <input message="tns:DeletePrivilegeRequest"></input>
+            <output message="tns:DeletePrivilegeResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <operation name="updatePrivilege">
+            <input message="tns:UpdatePrivilegeRequest"></input>
+            <output message="tns:UpdatePrivilegeResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        <operation name="getPrivileges">
+            <input message="tns:GetPrivilegesRequest"></input>
+            <output message="tns:GetPrivilegesResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>        
+        <operation name="deleteSDOType">
+            <input message="tns:DeleteSDOTypeRequest"></input>
+            <output message="tns:DeleteSDOTypeResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        
+        <operation name="getAccountingData">
+            <input message="tns:GetAccountingDataRequest"></input>
+            <output message="tns:GetAccountingDataResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        
+          <operation name="performAction">
+            <input message="tns:PerformActionRequest"></input>
+            <output message="tns:PerformActionResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation> 
+         <operation name="getArchiveInfo">
+            <input message="tns:GetArchiveInfoRequest"></input>
+            <output message="tns:GetArchiveInfoResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        
+         <operation name="convertTestMandant">
+            <input message="tns:ConvertTestMandantRequest"></input>
+            <output message="tns:ConvertTestMandantResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>
+        
+        <operation name="clearAOIDs">
+            <input message="tns:ClearAOIDsRequest"></input>
+            <output message="tns:ClearAOIDsResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation> 
+        
+        <operation name="getArchivingOperations">
+            <input message="tns:GetArchivingOperationsRequest"></input>
+            <output message="tns:GetArchivingOperationsResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>      
+                
+        <operation name="getAuditLogFileNames">
+            <input message="tns:GetAuditLogFileNamesRequest"></input>
+            <output message="tns:GetAuditLogFileNamesResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>      
+                
+        <operation name="getAuditLogFile">
+            <input message="tns:GetAuditLogFileRequest"></input>
+            <output message="tns:GetAuditLogFileResponse"></output>
+            <fault name="FaultMessage" message="tns:FaultMessage" />
+        </operation>      
+      
+        
+    </portType>
+    <binding name="MandantAdminPortTypeBinding" type="tns:MandantAdminPortType">
+        <soap:binding style="document"
+            transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="getHashAlgorithms">
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:GetHashAlgorithmsRequest"
+                    part="secDocsHeader" use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:GetHashAlgorithmsResponse"
+                    part="secDocsHeader" use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="setCredentials">
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:SetCredentialsRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:SetCredentialsResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="getSignatureAlgorithms">
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:GetSignatureAlgorithmsRequest"
+                    part="secDocsHeader" use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:GetSignatureAlgorithmsResponse"
+                    part="secDocsHeader" use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="getTSPs">
+            <documentation>Returns a List of TSPs
+            </documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:GetTSPsRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:GetTSPsResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="getSDOTypes">
+            <documentation>Returns a List of SDOTypes
+            </documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:GetSDOTypesRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:GetSDOTypesResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="getOrganisations">
+            <documentation>Returns a list of organisations
+            </documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:GetOrganisationsRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:GetOrganisationsResponse"
+                    part="secDocsHeader" use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="createOrganisation">
+            <documentation>Create an organisation
+            </documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:CreateOrganisationRequest"
+                    part="secDocsHeader" use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:CreateOrganisationResponse"
+                    part="secDocsHeader" use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="createSDOType">
+            <documentation>Create a SDOType
+            </documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:CreateSDOTypeRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:CreateSDOTypeResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+         <operation name="modifySDOType">
+            <documentation>Modifies an existing SDOType
+            </documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:ModifySDOTypeRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:ModifySDOTypeResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+          <operation name="modifyXAIP">
+            <documentation>Allows to add schemas to the XAIP type, so that content of any elements can be validated
+            </documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:ModifyXAIPRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:ModifyXAIPResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="renewHashAlgorithm">
+            <documentation>Renew the hash algorithm
+            </documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:RenewHashAlgorithmRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:RenewHashAlgorithmResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="renewTSPSignature">
+            <documentation>Renew the signature algorithm
+            </documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:RenewTSPSignatureRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:RenewTSPSignatureResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="getVersion">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="updateMandant">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation> 
+        <operation name="getMandantProperties">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+         <operation name="updateOrganisation">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>  
+
+        <operation name="createRole">
+            <documentation> creates a Role
+            </documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:CreateRoleRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:CreateRoleResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="deleteRoles">
+            <documentation> delete a Role
+            </documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:DeleteRoleRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:DeleteRoleResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="updateRole">
+            <documentation>Update a Role
+            </documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:UpdateRoleRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:UpdateRoleResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+                <operation name="getRoles">
+            <documentation>Returns a list of all defined roles
+            </documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:GetRolesRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:GetRolesResponse"
+                    part="secDocsHeader" use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        
+        <operation name="createPrivilege">
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:CreatePrivilegeRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:CreatePrivilegeResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="deletePrivileges">
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:DeletePrivilegeRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:DeletePrivilegeResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="updatePrivilege">
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:UpdatePrivilegeRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:UpdatePrivilegeResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="getPrivileges">
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:GetPrivilegesRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:GetPrivilegesResponse"
+                    part="secDocsHeader" use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>        
+        <operation name="deleteSDOType">
+            <documentation> delete a SDOType
+            </documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:DeleteSDOTypeRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:DeleteSDOTypeResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="getAccountingData">
+            <documentation>Get the accounting data
+            </documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:GetAccountingDataRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:GetAccountingDataResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        <operation name="performAction">
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:PerformActionRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:PerformActionResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+         <operation name="getArchiveInfo">
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:GetArchiveInfoRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:GetArchiveInfoResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        
+          <operation name="clearAOIDs">
+            <documentation> Deletes all AOIDs of a test mandant/tenant
+            </documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:ClearAOIDsRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:ClearAOIDsResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        
+         <operation name="convertTestMandant">
+            <documentation>Convert a test mandant/tenant into a productive mandant/tenant
+            </documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:ConvertTestMandantRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:ConvertTestMandantResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation> 
+        
+         <operation name="getArchivingOperations">
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:GetArchivingOperationsRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:GetArchivingOperationsResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>      
+        
+        <operation name="getAuditLogFileNames">
+            <documentation> get list of all audit log files of the mandant/tenant
+            </documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:GetAuditLogFileNamesRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:GetAuditLogFileNamesResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+        
+        <operation name="getAuditLogFile">
+            <documentation> get content of a specific audit log file of the mandant/tenant
+            </documentation>
+            <soap:operation soapAction="" style="document" />
+            <input>
+                <soap:header message="tns:GetAuditLogFileRequest" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </input>
+            <output>
+                <soap:header message="tns:GetAuditLogFileResponse" part="secDocsHeader"
+                    use="literal" />
+                <soap:body parts="body" use="literal" />
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal" />
+            </fault>
+        </operation>
+                
+        
+    </binding>
+    <service name="MandantAdminService">
+        <port name="MandantAdminPortTypeBindingPort" binding="tns:MandantAdminPortTypeBinding">
+            <soap:address location="http://localhost:8080/archiver/ws/4.0/mandantAdmin" />
+        </port>
+    </service>
+</definitions>

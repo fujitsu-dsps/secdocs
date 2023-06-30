@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<xsd:schema xmlns="http://uri.dsengine.ts.fujitsu.com/SecDocs/VerificationInfo" targetNamespace="http://uri.dsengine.ts.fujitsu.com/SecDocs/VerificationInfo" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <!-- 
+    SecDocs 4.0A00
+    Copyright (c) by Fujitsu 2022
+
+    This work is licensed under a
+    Creative Commons Attribution-NoDerivatives 4.0 International License.
+    https://creativecommons.org/licenses/by-nd/4.0/
+    
+    Any changes done by the end user to this file are not subject of any
+    guarantee or maintenance by Fujitsu.
+    -->
+
+	<xsd:element name="VerificationInfo">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Version" type="xsd:string" minOccurs="0" maxOccurs="1"></xsd:element>
+				
+				<xsd:element name="Aoid" type="xsd:string" minOccurs="1"	maxOccurs="1"></xsd:element>
+				<xsd:element name="VerificationData" minOccurs="1"  		maxOccurs="unbounded">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="SignatureXPath"
+								type="xsd:string" />
+							<xsd:element name="ContentXPath"
+								type="xsd:string" />
+							<xsd:element name="VerificationProtocol"
+								type="xsd:base64Binary" />
+								<!-- type="xsd:string" /> --> 
+							<xsd:element name="RevocationValues"
+								type="xsd:base64Binary" minOccurs="0" />
+								<!--  type="xsd:string" minOccurs="0" /> -->
+							<xsd:element name="CertificateValues"
+								type="xsd:base64Binary" minOccurs="0" />
+							<!--  type="xsd:string" minOccurs="0" /> -->
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				
+				<xsd:element name="ExternalKeyValues" type="ExternalNamedValuesType" minOccurs="0"/>
+				
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element> 
+	
+	<xsd:complexType name="ExternalNamedValuesType">
+		<xsd:sequence>
+			<xsd:element name="ArchiveDateTime" type="xsd:base64Binary"   minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="COID" 			type="xsd:base64Binary"   minOccurs="0"/>
+			<xsd:element name="Subject" 		type="xsd:base64Binary"   minOccurs="0"/>
+			<xsd:element name="CatchWords" 		type="xsd:base64Binary"   minOccurs="0"/>									
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>

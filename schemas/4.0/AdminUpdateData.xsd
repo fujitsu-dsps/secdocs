@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://ts.fujitsu.com/secdocs/v4_0/adminUpdateData"
+    elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://ts.fujitsu.com/secdocs/v4_0/adminUpdateData"
+    xmlns:Q1="http://ts.fujitsu.com/secdocs/v4_0/adminData">
+    <!-- 
+    SecDocs 4.0A00
+    Copyright (c) by Fujitsu 2022
+
+    This work is licensed under a
+    Creative Commons Attribution-NoDerivatives 4.0 International License.
+    https://creativecommons.org/licenses/by-nd/4.0/
+    
+    Any changes done by the end user to this file are not subject of any
+    guarantee or maintenance by Fujitsu.
+    -->
+    <xsd:import schemaLocation="AdminCommon.xsd"
+        namespace="http://ts.fujitsu.com/secdocs/v4_0/adminData"></xsd:import>
+    <xsd:complexType name="ContactType">
+        <xsd:complexContent>
+            <xsd:extension base="tns:BaseType">
+                <xsd:sequence>
+                    <xsd:element name="FirstName" type="xsd:string"
+                        minOccurs="0"></xsd:element>
+                    <xsd:element name="Surname" type="tns:NonEmptyString"
+                        maxOccurs="1" minOccurs="0"></xsd:element>
+                    <xsd:element name="Street" type="xsd:string" maxOccurs="1"
+                        minOccurs="0">
+                    </xsd:element>
+                    <xsd:element name="City" type="xsd:string" maxOccurs="1"
+                        minOccurs="0"></xsd:element>
+                    <xsd:element name="Zip" type="xsd:string" minOccurs="0"
+                        maxOccurs="1"></xsd:element>
+                    <xsd:element name="Country" type="xsd:string"
+                        maxOccurs="1" minOccurs="0"></xsd:element>
+                    <xsd:element name="Tel" type="xsd:string" minOccurs="0"></xsd:element>
+                    <xsd:element name="Email" type="xsd:string" minOccurs="0"></xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="Contact" type="tns:ContactType"></xsd:element>
+    <xsd:simpleType name="NonEmptyString">
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"></xsd:minLength>
+            <xsd:whiteSpace value="collapse"></xsd:whiteSpace>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="BaseType">
+        <xsd:sequence>
+            <xsd:element name="RecordID" type="xsd:unsignedLong"
+                minOccurs="0" nillable="true"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TSPType">
+        <xsd:complexContent>
+            <xsd:extension base="tns:BaseType">
+                <xsd:sequence>
+                    <xsd:element name="Name" maxOccurs="1" minOccurs="1">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:NCName">
+                                <xsd:maxLength value="50"></xsd:maxLength>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="ProviderName" type="tns:NonEmptyString"
+                        maxOccurs="1" minOccurs="0">
+                    </xsd:element>
+                    <xsd:element name="URL" type="tns:NonEmptyString"
+                        maxOccurs="1" minOccurs="0">
+                    </xsd:element>
+                    <xsd:element name="SigHashAlgorithmName" type="xsd:string"
+                        maxOccurs="1" minOccurs="0"></xsd:element>
+                    <xsd:element name="SignatureAlgorithmName" type="xsd:string"
+                        minOccurs="0" maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element name="KeyLength" maxOccurs="1" minOccurs="0">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:integer">
+                                <xsd:maxInclusive value="2147483647"></xsd:maxInclusive>
+                                <xsd:minInclusive value="1"></xsd:minInclusive>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="CertificateName" type="xsd:string"
+                        maxOccurs="1" minOccurs="0">
+                    </xsd:element>
+                    <xsd:element name="SignatureQuality" maxOccurs="1"
+                        minOccurs="0">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:enumeration value="ADVANCED"></xsd:enumeration>
+                                <xsd:enumeration value="QUALIFIED"></xsd:enumeration>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="Policy" maxOccurs="1" minOccurs="0">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:base64Binary">
+                                <xsd:minLength value="1"></xsd:minLength>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                      <xsd:element name="doEnrich" type="xsd:boolean"
+                        maxOccurs="1" minOccurs="0">
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="MandantType">
+        <xsd:complexContent>
+            <xsd:extension base="tns:BaseType">
+                <xsd:sequence>
+                    <xsd:element name="Name" maxOccurs="1" minOccurs="0">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:NCName">
+                                <xsd:pattern value="[0-9,A-Z,a-z_]+"></xsd:pattern>
+                                <xsd:minLength value="1"></xsd:minLength>
+                                <xsd:maxLength value="20"></xsd:maxLength>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="DisplayName" type="xsd:string"
+                        maxOccurs="1" minOccurs="0">
+                    </xsd:element>
+                    <xsd:element name="Contact" type="tns:ContactType"
+                        minOccurs="0" maxOccurs="1">
+                    </xsd:element>
+                    <xsd:element name="Path" minOccurs="0" type="tns:PathType"
+                        maxOccurs="1">
+
+                    </xsd:element>
+                    <xsd:element name="TreeSize" maxOccurs="1" minOccurs="0">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:integer">
+                                <xsd:minInclusive value="1"></xsd:minInclusive>
+                                <xsd:maxExclusive value="2147483647"></xsd:maxExclusive>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="TreeAge" maxOccurs="1" minOccurs="0">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:integer">
+
+                                <xsd:minInclusive value="1"></xsd:minInclusive>
+                                <xsd:maxExclusive value="2147483647"></xsd:maxExclusive>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="TSP" maxOccurs="unbounded"
+                        minOccurs="0">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:NCName">
+                                <xsd:minLength value="1"></xsd:minLength>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="State" maxOccurs="1" minOccurs="0">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:enumeration value="test"></xsd:enumeration>
+                                <xsd:enumeration value="productive"></xsd:enumeration>
+                                <xsd:enumeration value="convertingToProductive"></xsd:enumeration>
+                                <xsd:enumeration value="clearing"></xsd:enumeration>
+                                <xsd:enumeration value="deleting"></xsd:enumeration>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="Properties" type="Q1:PropertyListType"
+                        maxOccurs="1" minOccurs="0">
+                    </xsd:element>
+                    <xsd:element name="Type" type="tns:SimpleMandantType"
+                        maxOccurs="1" minOccurs="0">
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:element name="Mandant" type="tns:MandantType"></xsd:element>
+    <xsd:element name="result" type="xsd:string"></xsd:element>
+    <xsd:complexType name="OrganisationType">
+        <xsd:sequence>
+            <xsd:element name="Name" type="xsd:NCName"></xsd:element>
+            <xsd:element name="Path" type="tns:PathType" maxOccurs="1"
+                minOccurs="0"></xsd:element>
+            <xsd:element name="SDOType" type="tns:NonEmptyString"
+                maxOccurs="unbounded" minOccurs="0"></xsd:element>
+            <xsd:element name="Contact" type="tns:ContactType"
+                maxOccurs="1" minOccurs="0"></xsd:element>
+            <xsd:element name="DisplayName" type="xsd:string"
+                maxOccurs="1" minOccurs="0"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Organisation" type="tns:OrganisationType"></xsd:element>
+
+    <xsd:element name="GetRequest" type="xsd:string" nillable="true"></xsd:element>
+
+
+    <xsd:simpleType name="NameType">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[a-zA-Z][a-zA-Z0-9_-]*"></xsd:pattern>
+            <xsd:minLength value="1"></xsd:minLength>
+            <xsd:maxLength value="512"></xsd:maxLength>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="PathType">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[^_].*"></xsd:pattern>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+
+
+    <xsd:complexType name="VersionType">
+        <xsd:sequence>
+
+            <xsd:element name="Component" type="xsd:string"
+                maxOccurs="unbounded" minOccurs="1"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <xsd:element name="TSP" type="tns:TSPType"></xsd:element>
+
+      <xsd:simpleType name="SimpleMandantType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="XAIP"></xsd:enumeration>
+            <xsd:enumeration value="SDO"></xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
