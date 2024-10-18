@@ -75,7 +75,11 @@
     <!--    OptionalInputs - SecDocs Specific Definitions    -->
     <!-- =================================================== -->
 
-    <!--    No extensions in SecDocs V3.2                    -->
+    <element name="OverrideSigValidationReason " type="tr:TNonEmptyString">
+        <annotation>
+            <documentation>Reason to store the data object, even if the signature could not be verified successfully</documentation>
+         </annotation>
+    </element>
 
     <!-- =================================================== -->
     <!--    OptionalOutputs - SecDocs specific Definitions   -->
