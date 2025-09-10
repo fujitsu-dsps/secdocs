@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <definitions name="ArchivingSR" 
+              xmlns="http://schemas.xmlsoap.org/wsdl/" 
+              xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+              xmlns:sdheader="http://ts.fujitsu.com/secdocs/v4_0/secdocs"
+              xmlns:sdarchiving="http://ts.fujitsu.com/secdocs/v4_0/archiving"
+              xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+              xmlns:sdo="http://ts.fujitsu.com/secdocs/sdosamples/v1_0/multidocument" 
+              xmlns:tns="http://ts.fujitsu.com/secdocs/ws/v4_0/archiving" 
+              targetNamespace="http://ts.fujitsu.com/secdocs/ws/v4_0/archiving">
+    <!-- 
+    SecDocs 4.0A00
+    Copyright (c) 2025 Fujitsu Germany GmbH
+
+    This work is licensed under a
+    Creative Commons Attribution-NoDerivatives 4.0 International License.
+    https://creativecommons.org/licenses/by-nd/4.0/
+    
+    Any changes done by the end user to this file are not subject of any
+    guarantee or maintenance by Fujitsu.
+    -->
+    
+    <documentation>
+      SecDocs Archiving Web Service WSDL file for the SecDocs SDO specific 
+      submit and request operations.
+    </documentation>
+
+	<types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://ts.fujitsu.com/secdocs/v4_0/secdocs" schemaLocation="../secdocs.xsd"/>
+		</schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://ts.fujitsu.com/secdocs/v4_0/archiving" schemaLocation="../ArchivingData.xsd"/>
+            <import namespace="http://ts.fujitsu.com/secdocs/v4_0/archiving" schemaLocation="../ArchivingDataResponses.xsd"/>
+        </schema>
+
+        <!-- SDO specific schema files -->
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://ts.fujitsu.com/secdocs/sdosamples/v1_0/multidocument" schemaLocation="MultiDocument.xsd"/>
+        </schema>
+	</types>
+
+
+    <message name="SecDocsSoapHeader">
+        <documentation>SecDocs related SOAP header data</documentation>
+        <part name="secDocsSoapHeader" element="sdheader:soapHeaderData"/>
+    </message>
+	<message name="FaultMessage">
+        <documentation>SecDocs fault message data</documentation>
+		<part name="secDocsSoapFault" element="sdheader:faultDetails"/>
+	</message>
+    <message name="SubmitSDO_ResponseMessage">
+        <documentation>SecDocs operation submitSDO related response message</documentation>
+        <part name="submitSdoResponse" element="sdarchiving:submitSdoResponse"/>
+    </message>
+    <message name="RetrieveSDO_RequestMessage">
+        <documentation>SecDocs operation retrieveSDO related request message</documentation>
+        <part name="retrieveSdoRequest" element="sdarchiving:retrieveSdoRequest"/>
+    </message>
+    <message name="ReplaceSDO_ResponseMessage">
+        <documentation>SecDocs operation replaceSDO related response message</documentation>
+        <part name="replaceSdoResponse" element="sdarchiving:replaceSdoResponse"/>
+    </message>
+
+    <!-- SDO specific messages -->
+    <message name="SubmitMultiDocument_RequestMessage">
+        <documentation>SDO related submitSDO request Message</documentation>
+        <part name="multiDocument" element="sdo:multiDocument"/>
+    </message>
+    <message name="RetrieveMultiDocument_ResponseMessage">
+        <documentation>SDO related retrieveSDO response Message</documentation>
+        <part name="multiDocument" element="sdo:multiDocument"/>
+    </message>
+    <message name="ReplaceMultiDocument_RequestMessage">
+        <documentation>SDO related replaceSDO request Message</documentation>
+        <part name="multiDocument" element="sdo:multiDocument"/>
+    </message>
+
+
+	<portType name="ArchivingSR_PortType">
+	    <!-- SDO specific submit/retieve operations -->
+        <operation name="submitMultiDocument">
+            <input message="tns:SubmitMultiDocument_RequestMessage"/>
+            <output message="tns:SubmitSDO_ResponseMessage"/>
+            <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+        <operation name="retrieveMultiDocument">
+            <input message="tns:RetrieveSDO_RequestMessage"/>
+            <output message="tns:RetrieveMultiDocument_ResponseMessage"/>
+            <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+        <operation name="replaceMultiDocument">
+            <input message="tns:ReplaceMultiDocument_RequestMessage"/>
+            <output message="tns:ReplaceSDO_ResponseMessage"/>
+            <fault name="FaultMessage" message="tns:FaultMessage"/>
+        </operation>
+	</portType>
+
+
+	<binding name="ArchivingSR_Binding" type="tns:ArchivingSR_PortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="submitMultiDocument">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="retrieveMultiDocument">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="replaceMultiDocument">
+            <soap:operation soapAction="" style="document"/>
+            <input>
+                <soap:header message="tns:SecDocsSoapHeader" part="secDocsSoapHeader" use="literal"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FaultMessage">
+                <soap:fault name="FaultMessage" use="literal"/>
+            </fault>
+        </operation>
+	</binding>
+
+
+	<service name="ArchivingSR_Service">
+	    <documentation>SecDocs archiving web service</documentation>
+		<port name="ArchivingSR_Port" binding="tns:ArchivingSR_Binding">
+			<soap:address location="http://localhost:8080/archiver/ws/4.0/archiving"/>
+		</port>
+	</service>
+</definitions>

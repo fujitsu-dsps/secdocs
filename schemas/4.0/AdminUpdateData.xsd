@@ -5,7 +5,7 @@
     xmlns:Q1="http://ts.fujitsu.com/secdocs/v4_0/adminData">
     <!-- 
     SecDocs 4.0A00
-    Copyright (c) by Fujitsu 2022
+    Copyright (c) 2025 Fujitsu Germany GmbH
 
     This work is licensed under a
     Creative Commons Attribution-NoDerivatives 4.0 International License.
@@ -231,30 +231,3 @@
         </xsd:restriction>
     </xsd:simpleType>
 </xsd:schema>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

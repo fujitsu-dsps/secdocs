@@ -7,7 +7,7 @@
     
     <!-- 
     SecDocs 4.0A00
-    Copyright (c) by Fujitsu 2022
+    Copyright (c) 2025 Fujitsu Germany GmbH
 
     This work is licensed under a
     Creative Commons Attribution-NoDerivatives 4.0 International License.
@@ -75,7 +75,7 @@
     <!--    OptionalInputs - SecDocs Specific Definitions    -->
     <!-- =================================================== -->
 
-    <element name="OverrideSigValidationReason " type="tr:TNonEmptyString">
+     <element name="OverrideSigValidationReason " type="tr:TNonEmptyString">
         <annotation>
             <documentation>Reason to store the data object, even if the signature could not be verified successfully</documentation>
          </annotation>
