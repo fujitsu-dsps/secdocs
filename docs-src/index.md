@@ -1,7 +1,8 @@
 # Fujitsu SecDocs Web Services API
 Das Fujitsu SecDocs API ist eine Web Service Schnittstelle. In diesem Repository
 findet man alle benötigten WSDL- und Schemadateien und eine Beschreibung des
-APIs.
+APIs.  
+
 - [documents/4.2](https://github.com/fujitsu-dsps/secdocs/tree/main/documents/4.2)  
   SecDocs 4.2 API Beschreibung
 - [schemas/4.2](https://github.com/fujitsu-dsps/secdocs/tree/main/schemas/4.0)  
